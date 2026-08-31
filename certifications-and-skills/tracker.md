@@ -28,19 +28,19 @@ Last updated: 2026-08-31
 
 |---|---|---|---|
 
-| Linux System Hardening | Kali Linux / Ubuntu | Complete | Portfolio documentation |
+| Linux System Hardening | Kali Linux / Ubuntu | Complete | Portfolio Documentation |
 
-| Windows System Hardening | Windows | Complete | Portfolio documentation |
+| Windows System Hardening | Windows | Complete | Portfolio Documentation |
 
-| Network Traffic Analysis | Wireshark | Complete | Portfolio documentation |
+| Network Traffic Analysis | Wireshark | Complete | Portfolio Documentation |
 
-| Network Scanning \& Enumeration | Nmap | Complete | Portfolio documentation |
+| Network Scanning \& Enumeration | Nmap | Complete | Portfolio Documentation |
 
-| Password Security Testing | Hashcat / Hydra | Complete | Portfolio documentation |
+| Password Security Testing | Hashcat / Hydra | Complete | Portfolio Documentation |
 
-| Hypervisor Security \& RBAC | Hyper-V | Complete | Portfolio documentation |
+| Hypervisor Security \& RBAC | Hyper-V | Complete | Portfolio Documentation |
 
-| TLS \& Certificate Analysis | OpenSSL | Complete | Portfolio documentation |
+| TLS \& Certificate Analysis | OpenSSL | Complete | Portfolio Documentation |
 
 
 
@@ -54,7 +54,7 @@ Last updated: 2026-08-31
 
 | Kali Linux | Comfortable | Used throughout cybersecurity labs |
 
-| Ubuntu Linux | Comfortable | Administration and security hardening labs |
+| Ubuntu Linux | Comfortable | Administration and system hardening |
 
 | Wireshark | Comfortable | Packet capture and network traffic analysis |
 
@@ -62,11 +62,11 @@ Last updated: 2026-08-31
 
 | Hashcat | Comfortable | Password hash testing and cracking labs |
 
-| Hydra | Comfortable | Online authentication testing labs |
+| Hydra | Comfortable | Authentication and password testing labs |
 
 | OpenSSL | Comfortable | Certificate, CA, and TLS analysis |
 
 | Hyper-V | Learning | Virtualization administration and security |
 
-| Git / GitHub | Learning | Building and maintaining cybersecurity portfolio |
+| Git / GitHub | Learning | Building and maintaining this cybersecurity portfolio |
 
