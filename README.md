@@ -1,8 +1,8 @@
-\# Dennis Kalinin — Cybersecurity Portfolio
+Dennis Kalinin — Cybersecurity Portfolio
 
 
 
-\## About Me
+About Me
 
 
 
@@ -10,7 +10,7 @@ I am a cybersecurity professional developing hands-on experience across networki
 
 
 
-\## Goals
+Goals
 
 
 
@@ -26,13 +26,13 @@ I am a cybersecurity professional developing hands-on experience across networki
 
 
 
-\## Skills at a Glance
+Skills at a Glance
 
 
 
 | Category | Tools / Concepts |
 
-|---|---|
+------------------------------
 
 | Networking \& Security Fundamentals | TCP/IP, DNS, DHCP, VPNs, firewalls, network segmentation, Wireshark |
 
@@ -52,13 +52,13 @@ I am a cybersecurity professional developing hands-on experience across networki
 
 
 
-\## What's In This Repository
+What's In This Repository
 
 
 
 | Folder | What You'll Find |
 
-|---|---|
+-----------------------------
 
 | \[soc-tools](./soc-tools) | Security operations tools, detection content, and SOC-related projects |
 
@@ -80,7 +80,7 @@ I am a cybersecurity professional developing hands-on experience across networki
 
 
 
-\## Website
+Website
 
 
 
@@ -96,7 +96,7 @@ Planned production URL:
 
 
 
-\## Contact
+Contact
 
 
 
