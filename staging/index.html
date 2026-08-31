@@ -32,21 +32,29 @@
       z-index: 1000;
       background: rgba(7, 17, 31, 0.95);
       border-bottom: 1px solid #21334d;
-      padding: 18px 8%;
+      padding: 18px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 25px;
     }
 
     nav h2 {
       color: #61dafb;
       font-size: 1.2rem;
+      white-space: nowrap;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      font-size: 0.98rem;
     }
 
     nav a:hover {
@@ -54,16 +62,18 @@
     }
 
     section {
-      padding: 80px 8%;
+      padding: 75px 8%;
       max-width: 1200px;
       margin: auto;
     }
 
     .hero {
-      min-height: 88vh;
+      min-height: 75vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding-top: 55px;
+      padding-bottom: 55px;
     }
 
     .eyebrow {
@@ -211,6 +221,16 @@
       color: #8fa1b5;
     }
 
+    @media (max-width: 900px) {
+      nav {
+        padding: 16px 5%;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+    }
+
     @media (max-width: 700px) {
       nav ul {
         display: none;
@@ -218,6 +238,10 @@
 
       section {
         padding: 60px 6%;
+      }
+
+      .hero {
+        min-height: 70vh;
       }
 
       .cert-row {
