@@ -1,956 +1,4541 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Dennis Kalinin cybersecurity portfolio featuring enterprise security, threat analysis, infrastructure security, system hardening, networking, PKI, IAM, GRC, and hands-on cybersecurity projects."
+  >
 
   <title>Dennis Kalinin | Cybersecurity Portfolio</title>
 
   <style>
+
+    /* =========================================================
+       DESIGN SYSTEM
+       Avalanche-inspired professional palette
+       ========================================================= */
+
+    :root {
+      --black: #05070a;
+      --black-deep: #020304;
+
+      --panel: #0b1016;
+      --panel-light: #101821;
+      --panel-hover: #14202b;
+
+      --blue: #236192;
+      --blue-bright: #3180b8;
+      --blue-dark: #173f60;
+      --blue-soft: rgba(35, 97, 146, 0.16);
+      --blue-glow: rgba(49, 128, 184, 0.24);
+
+      --burgundy: #6e263d;
+      --burgundy-bright: #913750;
+      --burgundy-dark: #4b1929;
+      --burgundy-soft: rgba(110, 38, 61, 0.17);
+
+      --white: #ffffff;
+      --text: #e9edf0;
+      --silver: #a2aaad;
+      --muted: #7f8a91;
+      --muted-dark: #56636d;
+
+      --border: rgba(162, 170, 173, 0.17);
+      --border-strong: rgba(162, 170, 173, 0.28);
+
+      --green: #63d69f;
+
+      --radius: 16px;
+      --radius-small: 10px;
+
+      --max-width: 1200px;
+
+      --shadow:
+        0 24px 70px rgba(0, 0, 0, 0.32);
+    }
+
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
+      scroll-padding-top: 95px;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #07111f;
-      color: #e8eef7;
-      line-height: 1.6;
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(35, 97, 146, 0.11),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 88% 28%,
+          rgba(110, 38, 61, 0.10),
+          transparent 25%
+        ),
+        var(--black);
+
+      color: var(--text);
+
+      font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      line-height: 1.65;
+      overflow-x: hidden;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
-    /* =========================
-       STAGING PASSWORD GATE
-       ========================= */
-
-    #gate {
-      max-width: 430px;
-      margin: 120px auto;
-      padding: 35px;
-      text-align: center;
-      background: #0d1a2b;
-      border: 1px solid #20344f;
-      border-radius: 10px;
+    button,
+    input {
+      font: inherit;
     }
 
-    #gate h1 {
-      color: #61dafb;
-      margin-bottom: 15px;
+    img {
+      max-width: 100%;
     }
 
-    #gate p {
-      color: #b4c1d1;
-      margin-bottom: 20px;
+    ::selection {
+      background: var(--blue);
+      color: var(--white);
     }
 
-    #gate input {
+
+    /* =========================================================
+       BACKGROUND GRID
+       ========================================================= */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: -2;
+
+      background-image:
+        linear-gradient(
+          rgba(255, 255, 255, 0.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.018) 1px,
+          transparent 1px
+        );
+
+      background-size: 48px 48px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.85),
+          transparent 92%
+        );
+    }
+
+
+    /* =========================================================
+       SITE CONTAINER
+       ========================================================= */
+
+    #content {
       width: 100%;
-      padding: 12px;
-      background: #07111f;
-      border: 1px solid #294462;
-      border-radius: 6px;
-      color: #ffffff;
-      margin-bottom: 12px;
     }
 
-    #gate button {
-      width: 100%;
-      padding: 12px;
-      background: #61dafb;
-      color: #07111f;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
+    .container {
+      width: min(
+        calc(100% - 40px),
+        var(--max-width)
+      );
+
+      margin: 0 auto;
     }
 
-    #gate button:hover {
-      opacity: 0.9;
-    }
 
-    #err {
-      color: #ff7373 !important;
-      margin-top: 15px;
-      display: none;
-    }
-
-    /* =========================
+    /* =========================================================
        NAVIGATION
-       ========================= */
+       ========================================================= */
 
-    nav {
+    .site-header {
       position: sticky;
       top: 0;
+
       z-index: 1000;
-      background: rgba(7, 17, 31, 0.95);
-      border-bottom: 1px solid #21334d;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 25px;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        rgba(5, 7, 10, 0.91);
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
     }
 
-    nav h2 {
-      color: #61dafb;
-      font-size: 1.2rem;
+    .nav {
+      min-height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
       white-space: nowrap;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    .brand-mark {
+      position: relative;
+
+      width: 34px;
+      height: 34px;
+
+      border:
+        2px solid var(--blue-bright);
+
+      border-radius: 8px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--white);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue-soft),
+          var(--burgundy-soft)
+        );
     }
 
-    nav a:hover {
-      color: #61dafb;
+    .brand-mark::after {
+      content: "";
+
+      position: absolute;
+
+      right: -4px;
+      bottom: -4px;
+
+      width: 10px;
+      height: 10px;
+
+      border-radius: 3px;
+
+      background: var(--burgundy);
     }
 
-    /* =========================
-       GLOBAL SECTIONS
-       ========================= */
-
-    section {
-      padding: 75px 8%;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2.section-title {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-    }
-
-    .section-description {
-      color: #a9b8ca;
-      max-width: 800px;
-      margin-bottom: 35px;
-    }
-
-    /* =========================
-       HERO
-       ========================= */
-
-    .hero {
-      min-height: 75vh;
+    .brand-text {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding-top: 55px;
-      padding-bottom: 55px;
+
+      line-height: 1.1;
     }
 
-    .eyebrow {
-      color: #61dafb;
-      font-weight: bold;
+    .brand-main {
+      color: var(--white);
+      font-weight: 750;
+      letter-spacing: 0.7px;
+    }
+
+    .brand-sub {
+      margin-top: 4px;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.69rem;
+      letter-spacing: 1.4px;
+    }
+
+    .nav-links {
+      list-style: none;
+
+      display: flex;
+      align-items: center;
+
+      gap: 5px;
+    }
+
+    .nav-links a {
+      display: block;
+
+      padding: 9px 12px;
+
+      border-radius: 7px;
+
+      color: var(--silver);
+
+      font-size: 0.91rem;
+      font-weight: 600;
+
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+      background: var(--blue-soft);
+    }
+
+    .mobile-nav-button {
+      display: none;
+
+      width: 42px;
+      height: 42px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 8px;
+
+      background: var(--panel);
+
+      color: var(--white);
+
+      cursor: pointer;
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+
+      min-height:
+        calc(100vh - 76px);
+
+      display: flex;
+      align-items: center;
+
+      padding:
+        90px 0 80px;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 460px;
+      height: 460px;
+
+      right: -210px;
+      top: 50px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(35, 97, 146, 0.21),
+          transparent 67%
+        );
+
+      filter: blur(10px);
+
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(330px, 0.8fr);
+
+      gap: 80px;
+
+      align-items: center;
+    }
+
+    .system-status {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      margin-bottom: 23px;
+
+      padding: 8px 12px;
+
+      border:
+        1px solid rgba(99, 214, 159, 0.25);
+
+      border-radius: 999px;
+
+      background:
+        rgba(99, 214, 159, 0.06);
+
+      color: #aef4cf;
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.76rem;
+      letter-spacing: 1.3px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 16px
+        rgba(99, 214, 159, 0.8);
+
+      animation:
+        statusPulse 2.4s infinite;
+    }
+
+    @keyframes statusPulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.45;
+      }
+    }
+
+    .hero-kicker {
+      margin-bottom: 13px;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.82rem;
+
+      font-weight: 700;
+
       letter-spacing: 2px;
-      margin-bottom: 12px;
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1;
-      margin-bottom: 20px;
+      max-width: 760px;
+
+      margin-bottom: 22px;
+
+      color: var(--white);
+
+      font-size:
+        clamp(
+          3.6rem,
+          8vw,
+          6.9rem
+        );
+
+      line-height: 0.92;
+
+      letter-spacing: -4px;
     }
 
     .hero h1 span {
-      color: #61dafb;
+      display: block;
+
+      margin-top: 9px;
+
+      color: transparent;
+
+      -webkit-text-stroke:
+        1.5px var(--silver);
     }
 
-    .hero p {
-      max-width: 760px;
-      font-size: 1.2rem;
-      color: #b9c7d8;
+    .hero-role {
+      margin-bottom: 20px;
+
+      color: var(--silver);
+
+      font-size:
+        clamp(
+          1.1rem,
+          2.3vw,
+          1.5rem
+        );
+
+      font-weight: 500;
+    }
+
+    .hero-role strong {
+      color: var(--white);
+    }
+
+    .hero-description {
+      max-width: 720px;
+
       margin-bottom: 30px;
+
+      color: var(--silver);
+
+      font-size: 1.03rem;
     }
 
-    /* =========================
-       BUTTONS
-       ========================= */
-
-    .buttons {
+    .hero-buttons {
       display: flex;
-      gap: 15px;
       flex-wrap: wrap;
+
+      gap: 12px;
     }
 
     .button {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 7px;
-      font-weight: bold;
-      border: 1px solid #61dafb;
-      transition: 0.2s;
-    }
+      display: inline-flex;
 
-    .button.primary {
-      background: #61dafb;
-      color: #07111f;
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      min-height: 46px;
+
+      padding: 0 20px;
+
+      border:
+        1px solid var(--border-strong);
+
+      border-radius: 8px;
+
+      color: var(--white);
+
+      font-size: 0.91rem;
+      font-weight: 700;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
     }
 
-    /* =========================
-       CARDS
-       ========================= */
+    .button-primary {
+      border-color: var(--blue);
 
-    .grid {
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue-dark),
+          var(--blue)
+        );
+    }
+
+    .button-primary:hover {
+      box-shadow:
+        0 10px 30px var(--blue-glow);
+    }
+
+    .button-secondary {
+      border-color:
+        rgba(145, 55, 80, 0.55);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--burgundy-dark),
+          var(--burgundy)
+        );
+    }
+
+    .button-secondary:hover {
+      box-shadow:
+        0 10px 30px
+        rgba(110, 38, 61, 0.25);
+    }
+
+    .button-ghost:hover {
+      border-color: var(--silver);
+      background: rgba(255,255,255,0.04);
+    }
+
+
+    /* =========================================================
+       TERMINAL PROFILE CARD
+       ========================================================= */
+
+    .terminal {
+      position: relative;
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--border-strong);
+
+      border-radius: var(--radius);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15, 24, 33, 0.97),
+          rgba(5, 9, 13, 0.98)
+        );
+
+      box-shadow: var(--shadow);
+    }
+
+    .terminal::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--blue),
+          var(--silver),
+          var(--burgundy)
+        );
+    }
+
+    .terminal-header {
+      min-height: 45px;
+
+      padding:
+        0 16px;
+
+      border-bottom:
+        1px solid var(--border);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.75rem;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .terminal-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--muted-dark);
+    }
+
+    .terminal-dot.blue {
+      background: var(--blue);
+    }
+
+    .terminal-dot.burgundy {
+      background: var(--burgundy);
+    }
+
+    .terminal-body {
+      min-height: 355px;
+
+      padding: 25px 23px;
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.87rem;
+
+      line-height: 1.85;
+    }
+
+    .terminal-line {
+      margin-bottom: 8px;
+    }
+
+    .prompt {
+      color: var(--blue-bright);
+    }
+
+    .command {
+      color: var(--white);
+    }
+
+    .output {
+      color: var(--silver);
+    }
+
+    .terminal-accent {
+      color: #c06b84;
+    }
+
+    .terminal-green {
+      color: var(--green);
+    }
+
+    .cursor {
+      display: inline-block;
+
+      width: 8px;
+      height: 16px;
+
+      margin-left: 4px;
+
+      vertical-align: middle;
+
+      background: var(--silver);
+
+      animation:
+        cursorBlink 1s infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+
+    /* =========================================================
+       QUICK FACTS
+       ========================================================= */
+
+    .quick-facts {
+      padding-bottom: 40px;
+    }
+
+    .fact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      overflow: hidden;
+
+      background:
+        rgba(11, 16, 22, 0.85);
+    }
+
+    .fact {
+      position: relative;
+
+      min-height: 130px;
+
+      padding: 26px;
+
+      border-right:
+        1px solid var(--border);
+    }
+
+    .fact:last-child {
+      border-right: none;
+    }
+
+    .fact-number {
+      margin-bottom: 5px;
+
+      color: var(--white);
+
+      font-size:
+        clamp(
+          1.7rem,
+          3vw,
+          2.3rem
+        );
+
+      font-weight: 800;
+    }
+
+    .fact-label {
+      color: var(--silver);
+
+      font-size: 0.84rem;
+      font-weight: 600;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+    }
+
+    .fact:nth-child(odd)::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      width: 55px;
+      height: 3px;
+
+      background: var(--blue);
+    }
+
+    .fact:nth-child(even)::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      width: 55px;
+      height: 3px;
+
+      background: var(--burgundy);
+    }
+
+
+    /* =========================================================
+       SECTION SYSTEM
+       ========================================================= */
+
+    .section {
+      position: relative;
+
+      padding:
+        105px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+
+      margin-bottom: 45px;
+    }
+
+    .section-number {
+      margin-bottom: 8px;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.79rem;
+      font-weight: 700;
+
+      letter-spacing: 2px;
+    }
+
+    .section-number.burgundy {
+      color: #b75b75;
+    }
+
+    .section-title {
+      margin-bottom: 13px;
+
+      color: var(--white);
+
+      font-size:
+        clamp(
+          2.1rem,
+          4vw,
+          3.25rem
+        );
+
+      line-height: 1.05;
+
+      letter-spacing: -1.5px;
+    }
+
+    .section-description {
+      color: var(--silver);
+
+      font-size: 1rem;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--border-strong),
+          transparent
+        );
+    }
+
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.15fr 0.85fr;
+
+      gap: 55px;
+
+      align-items: start;
+    }
+
+    .about-copy p {
+      margin-bottom: 20px;
+
+      color: var(--silver);
+
+      font-size: 1.02rem;
+    }
+
+    .about-copy strong {
+      color: var(--white);
+    }
+
+    .about-side {
+      display: grid;
+      gap: 14px;
+    }
+
+    .identity-card {
+      padding: 22px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-small);
+
+      background: var(--panel);
+    }
+
+    .identity-card-label {
+      margin-bottom: 7px;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.7rem;
+
+      letter-spacing: 1.3px;
+
+      text-transform: uppercase;
+    }
+
+    .identity-card-value {
+      color: var(--white);
+
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .identity-card.blue {
+      border-left:
+        3px solid var(--blue);
+    }
+
+    .identity-card.burgundy {
+      border-left:
+        3px solid var(--burgundy);
+    }
+
+
+    /* =========================================================
+       EXPERIENCE
+       ========================================================= */
+
+    .timeline {
+      position: relative;
+
+      margin-left: 8px;
+    }
+
+    .timeline::before {
+      content: "";
+
+      position: absolute;
+
+      left: 12px;
+      top: 11px;
+      bottom: 11px;
+
+      width: 1px;
+
+      background:
+        linear-gradient(
+          var(--blue),
+          var(--silver),
+          var(--burgundy)
+        );
+    }
+
+    .timeline-item {
+      position: relative;
+
+      padding-left: 58px;
+
+      padding-bottom: 55px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-node {
+      position: absolute;
+
+      left: 4px;
+      top: 7px;
+
+      width: 17px;
+      height: 17px;
+
+      border:
+        3px solid var(--black);
+
+      border-radius: 50%;
+
+      background: var(--blue);
+
+      box-shadow:
+        0 0 0 1px var(--blue);
+    }
+
+    .timeline-item:nth-child(even)
+    .timeline-node {
+      background: var(--burgundy);
+
+      box-shadow:
+        0 0 0 1px var(--burgundy);
+    }
+
+    .timeline-date {
+      margin-bottom: 7px;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.75rem;
+      letter-spacing: 1.2px;
+    }
+
+    .timeline-role {
+      color: var(--white);
+
+      font-size: 1.35rem;
+      font-weight: 750;
+    }
+
+    .timeline-company {
+      margin-bottom: 15px;
+
+      color: var(--blue-bright);
+
+      font-weight: 650;
+    }
+
+    .timeline-item:nth-child(even)
+    .timeline-company {
+      color: #b85d77;
+    }
+
+    .timeline-description {
+      max-width: 850px;
+
+      color: var(--silver);
+    }
+
+    .timeline-description ul {
+      margin-top: 14px;
+      padding-left: 19px;
+    }
+
+    .timeline-description li {
+      margin-bottom: 8px;
+    }
+
+
+    /* =========================================================
+       FEATURED WORK
+       ========================================================= */
+
+    .project-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 20px;
     }
 
-    .card {
-      background: #0d1a2b;
-      border: 1px solid #20344f;
-      border-radius: 10px;
-      padding: 25px;
-      transition: 0.2s;
+    .project-card {
+      position: relative;
+
+      min-height: 330px;
+
+      overflow: hidden;
+
+      padding: 30px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(16, 24, 33, 0.92),
+          rgba(8, 13, 18, 0.95)
+        );
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #61dafb;
+    .project-card::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 3px;
+
+      background: var(--blue);
     }
 
-    .card h3 {
-      color: #61dafb;
+    .project-card.burgundy::before {
+      background: var(--burgundy);
+    }
+
+    .project-card:hover {
+      transform:
+        translateY(-6px);
+
+      border-color:
+        rgba(49, 128, 184, 0.45);
+
+      box-shadow:
+        0 22px 50px
+        rgba(35, 97, 146, 0.13);
+    }
+
+    .project-card.burgundy:hover {
+      border-color:
+        rgba(145, 55, 80, 0.5);
+
+      box-shadow:
+        0 22px 50px
+        rgba(110, 38, 61, 0.14);
+    }
+
+    .project-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .project-number {
+      color: var(--muted-dark);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 2.5rem;
+      font-weight: 800;
+
+      line-height: 1;
+    }
+
+    .project-type {
+      padding: 5px 9px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 999px;
+
+      color: var(--silver);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.68rem;
+
+      letter-spacing: 0.9px;
+    }
+
+    .project-card h3 {
       margin-bottom: 12px;
+
+      color: var(--white);
+
+      font-size: 1.42rem;
     }
 
-    .card p {
-      color: #b4c1d1;
+    .project-card p {
+      margin-bottom: 20px;
+
+      color: var(--silver);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-top: auto;
     }
 
     .tag {
-      display: inline-block;
-      background: #14263d;
-      border: 1px solid #294462;
-      border-radius: 5px;
-      padding: 5px 10px;
-      margin: 5px 4px 0 0;
-      font-size: 0.9rem;
+      display: inline-flex;
+
+      padding: 6px 9px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 6px;
+
+      background:
+        rgba(255, 255, 255, 0.025);
+
+      color: var(--silver);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.7rem;
     }
 
-    /* =========================
-       FEATURED WORK
-       ========================= */
+    .project-link {
+      display: inline-flex;
 
-    .featured {
-      background: #0d1a2b;
-      border-left: 4px solid #61dafb;
-      padding: 30px;
+      margin-top: 23px;
+
+      color: var(--blue-bright);
+
+      font-weight: 700;
+
+      font-size: 0.86rem;
+    }
+
+    .project-card.burgundy
+    .project-link {
+      color: #be6981;
+    }
+
+
+    /* =========================================================
+       LAB OPERATIONS
+       ========================================================= */
+
+    .lab-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .lab-card {
+      padding: 24px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-small);
+
+      background: var(--panel);
+
+      transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+    }
+
+    .lab-card:hover {
+      transform:
+        translateY(-4px);
+
+      background: var(--panel-hover);
+
+      border-color:
+        rgba(162, 170, 173, 0.32);
+    }
+
+    .lab-icon {
+      width: 38px;
+      height: 38px;
+
+      margin-bottom: 17px;
+
+      border:
+        1px solid var(--border-strong);
+
       border-radius: 8px;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.75rem;
+      font-weight: 800;
     }
 
-    .featured h3 {
-      font-size: 1.7rem;
-      margin-bottom: 12px;
+    .lab-card:nth-child(even)
+    .lab-icon {
+      color: #b75b75;
     }
 
-    .featured p {
-      color: #b4c1d1;
-      margin-bottom: 16px;
+    .lab-card h3 {
+      margin-bottom: 9px;
+
+      color: var(--white);
+
+      font-size: 1.03rem;
     }
 
-    /* =========================
-       CERTIFICATIONS
-       ========================= */
+    .lab-card p {
+      color: var(--silver);
 
-    .cert-row {
+      font-size: 0.89rem;
+    }
+
+
+    /* =========================================================
+       TECHNICAL ARSENAL
+       ========================================================= */
+
+    .skill-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .skill-card {
+      padding: 25px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-small);
+
+      background:
+        linear-gradient(
+          145deg,
+          var(--panel),
+          rgba(8, 12, 17, 0.98)
+        );
+    }
+
+    .skill-label {
+      margin-bottom: 17px;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.76rem;
+
+      font-weight: 800;
+
+      letter-spacing: 1.2px;
+    }
+
+    .skill-card:nth-child(even)
+    .skill-label {
+      color: #bb6079;
+    }
+
+    .tool-list {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      padding: 18px 0;
-      border-bottom: 1px solid #26384f;
+      flex-wrap: wrap;
+
+      gap: 8px;
     }
 
-    .cert-row:last-child {
-      border-bottom: none;
+    .tool {
+      padding: 6px 9px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 6px;
+
+      color: var(--silver);
+
+      font-size: 0.79rem;
+
+      background:
+        rgba(255,255,255,0.02);
     }
 
-    .status {
-      color: #61dafb;
-      font-weight: bold;
-      white-space: nowrap;
+
+    /* =========================================================
+       HOMELAB
+       ========================================================= */
+
+    .homelab {
+      display: grid;
+
+      grid-template-columns:
+        0.85fr 1.15fr;
+
+      gap: 25px;
     }
 
-    /* =========================
+    .homelab-main,
+    .homelab-architecture {
+      padding: 32px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--panel);
+    }
+
+    .homelab-big {
+      margin-bottom: 8px;
+
+      color: var(--white);
+
+      font-size:
+        clamp(
+          3.8rem,
+          7vw,
+          6rem
+        );
+
+      font-weight: 850;
+
+      line-height: 1;
+    }
+
+    .homelab-big span {
+      color: var(--blue-bright);
+    }
+
+    .homelab-sub {
+      margin-bottom: 22px;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      letter-spacing: 1px;
+    }
+
+    .homelab-main p {
+      color: var(--silver);
+    }
+
+    .architecture-title {
+      margin-bottom: 22px;
+
+      color: var(--white);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.78rem;
+
+      letter-spacing: 1.2px;
+    }
+
+    .architecture-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 12px;
+    }
+
+    .architecture-item {
+      min-height: 100px;
+
+      padding: 17px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 8px;
+
+      background:
+        rgba(255,255,255,0.02);
+    }
+
+    .architecture-item strong {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: var(--white);
+    }
+
+    .architecture-item span {
+      color: var(--muted);
+
+      font-size: 0.83rem;
+    }
+
+
+    /* =========================================================
+       EDUCATION
+       ========================================================= */
+
+    .education-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 20px;
+    }
+
+    .education-card {
+      position: relative;
+
+      padding: 30px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--panel);
+    }
+
+    .education-card::after {
+      content: "";
+
+      position: absolute;
+
+      left: 30px;
+      right: 30px;
+      bottom: 0;
+
+      height: 3px;
+
+      background: var(--blue);
+    }
+
+    .education-card:nth-child(even)::after {
+      background: var(--burgundy);
+    }
+
+    .education-school {
+      margin-bottom: 12px;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.75rem;
+
+      letter-spacing: 1.1px;
+    }
+
+    .education-card h3 {
+      margin-bottom: 10px;
+
+      color: var(--white);
+
+      font-size: 1.35rem;
+    }
+
+    .education-meta {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 18px;
+    }
+
+    .education-meta span {
+      padding: 6px 9px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 6px;
+
+      color: var(--silver);
+
+      font-size: 0.78rem;
+    }
+
+
+    /* =========================================================
+       PROFESSIONAL DEVELOPMENT
+       ========================================================= */
+
+    .training-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .training-card {
+      padding: 25px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-small);
+
+      background: var(--panel);
+    }
+
+    .training-status {
+      margin-bottom: 16px;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.7rem;
+
+      letter-spacing: 1.2px;
+    }
+
+    .training-card:nth-child(even)
+    .training-status {
+      color: #bd657e;
+    }
+
+    .training-card h3 {
+      margin-bottom: 8px;
+
+      color: var(--white);
+
+      font-size: 1.08rem;
+    }
+
+    .training-card p {
+      color: var(--silver);
+
+      font-size: 0.88rem;
+    }
+
+
+    /* =========================================================
+       BEYOND CYBERSECURITY
+       ========================================================= */
+
+    .beyond-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.15fr 0.85fr;
+
+      gap: 20px;
+    }
+
+    .beyond-main,
+    .beyond-side {
+      padding: 30px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--panel);
+    }
+
+    .beyond-number {
+      margin-bottom: 5px;
+
+      color: var(--white);
+
+      font-size: 3.6rem;
+      font-weight: 850;
+
+      line-height: 1;
+    }
+
+    .beyond-main h3,
+    .beyond-side h3 {
+      margin-bottom: 12px;
+
+      color: var(--white);
+    }
+
+    .beyond-main p,
+    .beyond-side p {
+      color: var(--silver);
+    }
+
+    .community-list {
+      margin-top: 17px;
+
+      list-style: none;
+    }
+
+    .community-list li {
+      position: relative;
+
+      margin-bottom: 9px;
+
+      padding-left: 19px;
+
+      color: var(--silver);
+    }
+
+    .community-list li::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 10px;
+
+      width: 6px;
+      height: 6px;
+
+      border-radius: 2px;
+
+      background: var(--burgundy);
+    }
+
+
+    /* =========================================================
        REPOSITORY
-       ========================= */
+       ========================================================= */
 
-    .repo-card a {
-      color: #61dafb;
-      font-weight: bold;
+    .repo-terminal {
+      overflow: hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background:
+        #06090d;
+
+      box-shadow: var(--shadow);
     }
 
-    /* =========================
-       FLOATING QR BUTTON
-       ========================= */
+    .repo-terminal-header {
+      padding: 14px 18px;
+
+      border-bottom:
+        1px solid var(--border);
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.76rem;
+    }
+
+    .repo-terminal-body {
+      padding: 28px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 10px 40px;
+    }
+
+    .repo-command {
+      grid-column:
+        1 / -1;
+
+      margin-bottom: 9px;
+
+      color: var(--silver);
+
+      font-family:
+        Consolas,
+        monospace;
+    }
+
+    .repo-command span {
+      color: var(--blue-bright);
+    }
+
+    .repo-item {
+      padding: 10px 12px;
+
+      border-radius: 6px;
+
+      color: var(--silver);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      transition: 0.2s ease;
+    }
+
+    .repo-item:hover {
+      color: var(--white);
+
+      background: var(--blue-soft);
+
+      transform:
+        translateX(5px);
+    }
+
+    .repo-item::before {
+      content: "drwx  ";
+
+      color: var(--muted-dark);
+    }
+
+
+    /* =========================================================
+       CONTACT CTA
+       ========================================================= */
+
+    .contact-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 60px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(35, 97, 146, 0.17),
+          rgba(11, 16, 22, 0.97) 45%,
+          rgba(110, 38, 61, 0.16)
+        );
+    }
+
+    .contact-card h2 {
+      max-width: 700px;
+
+      margin-bottom: 16px;
+
+      color: var(--white);
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          3.5rem
+        );
+
+      line-height: 1.05;
+    }
+
+    .contact-card p {
+      max-width: 720px;
+
+      margin-bottom: 27px;
+
+      color: var(--silver);
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      margin-top: 40px;
+
+      border-top:
+        1px solid var(--border);
+
+      padding:
+        35px 0 45px;
+    }
+
+    .footer-content {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 25px;
+
+      color: var(--muted);
+
+      font-size: 0.82rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 17px;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+
+    /* =========================================================
+       FLOATING GITHUB QR
+       ========================================================= */
 
     .qr-floating-container {
       position: fixed;
+
       right: 24px;
       bottom: 24px;
+
       z-index: 2000;
+
       display: flex;
+
       flex-direction: column;
+
       align-items: flex-end;
     }
 
     .qr-float-button {
       position: relative;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      border: 2px solid #61dafb;
-      background: #61dafb;
-      color: #07111f;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 1px;
+
+      width: 60px;
+      height: 60px;
+
+      border:
+        1px solid
+        rgba(49, 128, 184, 0.7);
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          var(--blue-dark),
+          var(--blue)
+        );
+
+      color: var(--white);
+
       cursor: pointer;
+
       box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.45),
-        0 0 20px rgba(97, 218, 251, 0.18);
+        0 15px 35px
+        rgba(0, 0, 0, 0.4),
+        0 0 22px var(--blue-glow);
+
       transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
     }
 
     .qr-float-button:hover {
-      transform: translateY(-4px) scale(1.04);
+      transform:
+        translateY(-4px);
+
       box-shadow:
-        0 14px 34px rgba(0, 0, 0, 0.5),
-        0 0 28px rgba(97, 218, 251, 0.3);
+        0 18px 40px
+        rgba(0, 0, 0, 0.48),
+        0 0 30px var(--blue-glow);
     }
 
-    /* Hover message */
+    .scan-icon {
+      position: relative;
+
+      width: 25px;
+      height: 25px;
+
+      margin: auto;
+    }
+
+    .scan-icon::before,
+    .scan-icon::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      border:
+        2px solid var(--white);
+    }
+
+    .scan-icon::before {
+      clip-path:
+        polygon(
+          0 0,
+          45% 0,
+          45% 8%,
+          8% 8%,
+          8% 45%,
+          0 45%
+        );
+    }
+
+    .scan-icon::after {
+      transform:
+        rotate(180deg);
+
+      clip-path:
+        polygon(
+          0 0,
+          45% 0,
+          45% 8%,
+          8% 8%,
+          8% 45%,
+          0 45%
+        );
+    }
+
+    .scan-center {
+      position: absolute;
+
+      width: 8px;
+      height: 8px;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      background: var(--white);
+    }
 
     .qr-tooltip {
       position: absolute;
-      right: 74px;
-      bottom: 13px;
-      background: #0d1a2b;
-      color: #ffffff;
-      border: 1px solid #294462;
-      padding: 8px 12px;
+
+      right: 72px;
+      bottom: 12px;
+
+      padding: 8px 11px;
+
+      border:
+        1px solid var(--border);
+
       border-radius: 7px;
-      font-size: 0.9rem;
+
+      background: var(--panel);
+
+      color: var(--white);
+
       white-space: nowrap;
+
+      font-size: 0.78rem;
+
       opacity: 0;
       visibility: hidden;
-      transform: translateX(8px);
-      transition: all 0.2s ease;
+
+      transform:
+        translateX(7px);
+
+      transition: 0.2s ease;
+
       pointer-events: none;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
     }
 
-    .qr-tooltip::after {
-      content: "";
-      position: absolute;
-      right: -7px;
-      top: 50%;
-      transform: translateY(-50%);
-      border-width: 7px 0 7px 7px;
-      border-style: solid;
-      border-color: transparent transparent transparent #294462;
-    }
-
-    .qr-float-button:hover .qr-tooltip,
-    .qr-float-button:focus .qr-tooltip {
+    .qr-float-button:hover
+    .qr-tooltip {
       opacity: 1;
       visibility: visible;
-      transform: translateX(0);
+
+      transform:
+        translateX(0);
     }
 
-    /* QR popup box */
-
     .qr-popup {
-      width: 320px;
       position: absolute;
+
       right: 0;
-      bottom: 78px;
-      background: #0d1a2b;
-      border: 1px solid #294462;
-      border-top: 3px solid #61dafb;
-      border-radius: 12px;
-      padding: 24px;
+      bottom: 75px;
+
+      width: 315px;
+
+      padding: 25px;
+
+      border:
+        1px solid var(--border-strong);
+
+      border-top:
+        3px solid var(--blue);
+
+      border-radius: var(--radius);
+
+      background: var(--panel);
+
+      box-shadow: var(--shadow);
+
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
 
       opacity: 0;
       visibility: hidden;
-      transform: translateY(12px) scale(0.97);
-      transform-origin: bottom right;
 
-      transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.2s ease;
+      transform:
+        translateY(10px)
+        scale(0.97);
+
+      transform-origin:
+        bottom right;
+
+      transition: 0.2s ease;
     }
 
     .qr-popup.open {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0) scale(1);
+
+      transform:
+        translateY(0)
+        scale(1);
     }
 
-    .qr-popup-close {
+    .qr-close {
       position: absolute;
+
+      right: 10px;
       top: 10px;
-      right: 12px;
-      width: 32px;
-      height: 32px;
+
+      width: 31px;
+      height: 31px;
+
       border: none;
-      border-radius: 50%;
+      border-radius: 7px;
+
       background: transparent;
-      color: #9fb0c5;
-      font-size: 1.4rem;
+
+      color: var(--muted);
+
+      font-size: 1.2rem;
+
       cursor: pointer;
-      transition: 0.2s;
     }
 
-    .qr-popup-close:hover {
-      background: #14263d;
-      color: #61dafb;
+    .qr-close:hover {
+      background:
+        rgba(255,255,255,0.05);
+
+      color: var(--white);
     }
 
-    .qr-popup-label {
-      color: #61dafb;
-      font-size: 0.78rem;
-      font-weight: bold;
-      letter-spacing: 1.6px;
+    .qr-label {
       margin-bottom: 5px;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size: 0.69rem;
+
+      letter-spacing: 1.4px;
     }
 
     .qr-popup h3 {
-      font-size: 1.45rem;
-      margin-bottom: 10px;
-      color: #ffffff;
+      margin-bottom: 8px;
+
+      color: var(--white);
     }
 
     .qr-popup-description {
-      color: #aebed0;
-      font-size: 0.92rem;
-      margin-bottom: 20px;
-    }
+      margin-bottom: 18px;
 
-    .qr-image-link {
-      display: inline-block;
+      color: var(--silver);
+
+      font-size: 0.84rem;
     }
 
     .qr-popup img {
       display: block;
-      width: 205px;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 10px;
-      background: #ffffff;
+
+      width: 190px;
+
+      margin:
+        0 auto 18px;
+
+      padding: 9px;
+
       border-radius: 10px;
-      transition: transform 0.2s ease;
+
+      background: var(--white);
     }
 
-    .qr-popup img:hover {
-      transform: scale(1.025);
-    }
-
-    .qr-popup-note {
-      color: #8fa1b5;
-      font-size: 0.82rem;
-      margin-top: 14px;
-      margin-bottom: 18px;
-    }
-
-    .qr-repo-button {
+    .qr-link {
       display: block;
-      width: 100%;
-      padding: 11px 14px;
-      background: #61dafb;
-      color: #07111f;
+
+      padding: 10px;
+
       border-radius: 7px;
-      font-weight: bold;
-      transition: 0.2s;
+
+      background: var(--blue);
+
+      color: var(--white);
+
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
-    .qr-repo-button:hover {
-      transform: translateY(-2px);
-      opacity: 0.92;
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform:
+        translateY(24px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
     }
 
-    /* =========================
-       FOOTER
-       ========================= */
+    .reveal.visible {
+      opacity: 1;
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid #21334d;
-      color: #8fa1b5;
+      transform:
+        translateY(0);
     }
 
-    /* =========================
-       MOBILE
-       ========================= */
 
-    @media (max-width: 700px) {
-      nav ul {
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 1000px) {
+
+      .hero-grid,
+      .about-grid,
+      .homelab,
+      .beyond-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-grid {
+        gap: 50px;
+      }
+
+      .terminal {
+        max-width: 650px;
+      }
+
+      .fact-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .fact:nth-child(2) {
+        border-right: none;
+      }
+
+      .fact:nth-child(-n+2) {
+        border-bottom:
+          1px solid var(--border);
+      }
+
+      .project-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-grid,
+      .skill-grid,
+      .training-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    @media (max-width: 820px) {
+
+      .mobile-nav-button {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+
+        left: 20px;
+        right: 20px;
+        top: 86px;
+
         display: none;
-      }
 
-      section {
-        padding: 60px 6%;
-      }
+        padding: 14px;
 
-      .cert-row {
+        border:
+          1px solid var(--border);
+
+        border-radius: var(--radius-small);
+
+        background:
+          rgba(8, 12, 17, 0.98);
+
+        box-shadow: var(--shadow);
+
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 11px 12px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .repo-terminal-body {
+        grid-template-columns: 1fr;
+      }
+
+      .repo-command {
+        grid-column: 1;
+      }
+
+      .contact-card {
+        padding: 38px 28px;
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .container {
+        width:
+          min(
+            calc(100% - 28px),
+            var(--max-width)
+          );
+      }
+
+      .section {
+        padding:
+          78px 0;
+      }
+
+      .hero {
+        padding:
+          65px 0;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .fact-grid,
+      .lab-grid,
+      .skill-grid,
+      .training-grid,
+      .architecture-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fact {
+        border-right: none;
+        border-bottom:
+          1px solid var(--border);
+      }
+
+      .fact:last-child {
+        border-bottom: none;
+      }
+
+      .terminal-body {
+        padding: 20px 17px;
+
+        font-size: 0.78rem;
+      }
+
+      .timeline-item {
+        padding-left: 46px;
       }
 
       .qr-floating-container {
-        right: 16px;
-        bottom: 16px;
-      }
-
-      .qr-float-button {
-        width: 58px;
-        height: 58px;
+        right: 15px;
+        bottom: 15px;
       }
 
       .qr-popup {
         position: fixed;
-        right: 16px;
-        bottom: 88px;
-        width: calc(100vw - 32px);
-        max-width: 340px;
+
+        right: 15px;
+        bottom: 87px;
+
+        width:
+          calc(100vw - 30px);
+
+        max-width: 330px;
       }
 
       .qr-tooltip {
         display: none;
       }
+
+      .footer-content {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
     }
+
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (
+      prefers-reduced-motion:
+      reduce
+    ) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================
-       PORTFOLIO CONTENT
-       ========================= -->
 
-  <div id="content">
+  <!-- =========================================================
+       PORTFOLIO
+       ========================================================= -->
 
-    <!-- Navigation -->
+  <div
+    id="content"
+  >
 
-    <nav>
-      <h2>DK // CYBERSECURITY</h2>
 
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#repository">Repository</a></li>
-      </ul>
-    </nav>
+    <!-- =======================================================
+         NAVIGATION
+         ======================================================= -->
 
-    <!-- Hero -->
+    <header class="site-header">
 
-    <section class="hero">
-
-      <p class="eyebrow">CYBERSECURITY PORTFOLIO</p>
-
-      <h1>Dennis <span>Kalinin</span></h1>
-
-      <p>
-        Building practical cybersecurity experience across security operations,
-        network defense, system hardening, virtualization, cryptography,
-        vulnerability analysis, and technical research.
-      </p>
-
-      <div class="buttons">
+      <div class="container nav">
 
         <a
-          class="button primary"
-          href="https://github.com/dkalinin96/cybersecurity-portfolio"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#top"
+          class="brand"
+          aria-label="Dennis Kalinin home"
         >
-          View GitHub
-        </a>
 
-        <a class="button" href="#work">
-          Explore My Work
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- About -->
-
-    <section id="about">
-
-      <h2 class="section-title">About Me</h2>
-
-      <p class="section-description">
-        I am developing hands-on cybersecurity experience with an emphasis on
-        understanding how systems operate, how they are attacked, and how they
-        can be defended. My goal is to continue strengthening my technical
-        foundation while building work that demonstrates practical ability,
-        documentation skills, and security-focused problem solving.
-      </p>
-
-    </section>
-
-    <!-- Technical Focus -->
-
-    <section id="skills">
-
-      <h2 class="section-title">Technical Focus</h2>
-
-      <p class="section-description">
-        My portfolio combines administration, networking, defensive security,
-        security testing, and cybersecurity research.
-      </p>
-
-      <div class="grid">
-
-        <div class="card">
-          <h3>Network Security</h3>
-
-          <p>
-            Traffic analysis, network discovery, segmentation,
-            protocols, and network-based attack concepts.
-          </p>
-
-          <span class="tag">Wireshark</span>
-          <span class="tag">Nmap</span>
-          <span class="tag">TCP/IP</span>
-          <span class="tag">DNS</span>
-          <span class="tag">DHCP</span>
-        </div>
-
-        <div class="card">
-          <h3>System Security</h3>
-
-          <p>
-            Linux and Windows administration with a focus on access control,
-            permissions, hardening, and secure configuration.
-          </p>
-
-          <span class="tag">Kali Linux</span>
-          <span class="tag">Ubuntu</span>
-          <span class="tag">Windows</span>
-          <span class="tag">AppArmor</span>
-        </div>
-
-        <div class="card">
-          <h3>Security Testing</h3>
-
-          <p>
-            Hands-on experience examining authentication weaknesses,
-            password security, exposed services, and system configurations.
-          </p>
-
-          <span class="tag">Hashcat</span>
-          <span class="tag">Hydra</span>
-          <span class="tag">Nmap</span>
-        </div>
-
-        <div class="card">
-          <h3>Cryptography & PKI</h3>
-
-          <p>
-            Certificate authorities, TLS configuration, certificate
-            validation, hashing, and public key infrastructure concepts.
-          </p>
-
-          <span class="tag">OpenSSL</span>
-          <span class="tag">TLS</span>
-          <span class="tag">PKI</span>
-          <span class="tag">Certificates</span>
-        </div>
-
-        <div class="card">
-          <h3>Virtualization Security</h3>
-
-          <p>
-            Virtual machine administration, hypervisor security,
-            snapshots, RBAC, and least-privilege design.
-          </p>
-
-          <span class="tag">Hyper-V</span>
-          <span class="tag">RBAC</span>
-          <span class="tag">Virtualization</span>
-        </div>
-
-        <div class="card">
-          <h3>Security Research</h3>
-
-          <p>
-            Incident analysis, vulnerability research, technical
-            documentation, and communicating cybersecurity concepts clearly.
-          </p>
-
-          <span class="tag">Threat Research</span>
-          <span class="tag">CVE Analysis</span>
-          <span class="tag">Documentation</span>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- Featured Work -->
-
-    <section id="work">
-
-      <h2 class="section-title">Featured Work</h2>
-
-      <p class="section-description">
-        This portfolio is built around hands-on projects rather than
-        simply listing technologies.
-      </p>
-
-      <div class="featured">
-
-        <h3>TLS & Certificate Security Analysis</h3>
-
-        <p>
-          Hands-on work examining certificate authorities, certificate
-          signing requests, TLS certificates, cipher configuration, and
-          weaknesses caused by outdated or insecure cryptographic settings.
-          This work combines technical testing with an explanation of the
-          real-world security impact and the configuration changes needed
-          to remediate the issue.
-        </p>
-
-        <span class="tag">OpenSSL</span>
-        <span class="tag">TLS</span>
-        <span class="tag">PKI</span>
-        <span class="tag">Certificate Analysis</span>
-
-        <br><br>
-
-        <a
-          class="button"
-          href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/tls-audits"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View TLS Audit Reports
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- Certifications -->
-
-    <section id="certifications">
-
-      <h2 class="section-title">Certifications & Development</h2>
-
-      <p class="section-description">
-        Certifications are one part of my development. I pair them with
-        practical labs and continued hands-on learning.
-      </p>
-
-      <div class="card">
-
-        <div class="cert-row">
-
-          <div>
-            <strong>CompTIA IT Fundamentals+ (ITF+)</strong>
-            <p>Completed September 2024</p>
+          <div class="brand-mark">
+            DK
           </div>
 
-          <span class="status">COMPLETED</span>
+          <div class="brand-text">
 
-        </div>
+            <span class="brand-main">
+              DENNIS KALININ
+            </span>
 
-        <div class="cert-row">
+            <span class="brand-sub">
+              CYBERSECURITY
+            </span>
 
-          <div>
-            <strong>CompTIA A+ Core 1 Certification Exam</strong>
-            <p>Completed June 2024</p>
           </div>
 
-          <span class="status">COMPLETED</span>
+        </a>
+
+
+        <button
+          id="mobileNavButton"
+          class="mobile-nav-button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          onclick="toggleMobileNav()"
+        >
+          ☰
+        </button>
+
+
+        <ul
+          id="navLinks"
+          class="nav-links"
+        >
+
+          <li>
+            <a href="#about">
+              About
+            </a>
+          </li>
+
+          <li>
+            <a href="#experience">
+              Experience
+            </a>
+          </li>
+
+          <li>
+            <a href="#work">
+              Work
+            </a>
+          </li>
+
+          <li>
+            <a href="#labs">
+              Labs
+            </a>
+          </li>
+
+          <li>
+            <a href="#skills">
+              Skills
+            </a>
+          </li>
+
+          <li>
+            <a href="#education">
+              Education
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </header>
+
+
+    <main id="top">
+
+
+      <!-- =====================================================
+           HERO
+           ===================================================== -->
+
+      <section class="hero">
+
+        <div class="container hero-grid">
+
+
+          <div class="hero-content">
+
+            <div class="system-status">
+              <span class="status-dot"></span>
+              CURRENT // ENTERPRISE SECURITY DEVELOPMENT
+            </div>
+
+            <p class="hero-kicker">
+              CYBERSECURITY // INFRASTRUCTURE // ANALYSIS
+            </p>
+
+            <h1>
+              DENNIS
+              <span>KALININ</span>
+            </h1>
+
+            <p class="hero-role">
+              <strong>Cybersecurity professional</strong>
+              focused on enterprise security,
+              infrastructure, threat analysis,
+              and defensive operations.
+            </p>
+
+            <p class="hero-description">
+              M.S. graduate in Cybersecurity Investigations
+              and Intelligence with hands-on experience
+              spanning network security, system hardening,
+              PKI, virtualization, security testing,
+              threat intelligence, and security engineering.
+            </p>
+
+
+            <div class="hero-buttons">
+
+              <a
+                class="button button-primary"
+                href="#work"
+              >
+                Explore Security Work →
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub Repository ↗
+              </a>
+
+              <a
+                class="button button-ghost"
+                href="#experience"
+              >
+                Experience
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- Terminal Profile -->
+
+          <div class="terminal">
+
+            <div class="terminal-header">
+
+              <div class="terminal-dots">
+                <span class="terminal-dot blue"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot burgundy"></span>
+              </div>
+
+              <span>
+                profile@dk-security
+              </span>
+
+            </div>
+
+
+            <div class="terminal-body">
+
+              <div class="terminal-line">
+                <span class="prompt">
+                  dennis@security:~$
+                </span>
+
+                <span class="command">
+                  whoami
+                </span>
+              </div>
+
+              <div class="terminal-line output">
+                Dennis Kalinin
+              </div>
+
+
+              <br>
+
+
+              <div class="terminal-line">
+                <span class="prompt">
+                  dennis@security:~$
+                </span>
+
+                <span class="command">
+                  cat education.txt
+                </span>
+              </div>
+
+              <div class="terminal-line output">
+                M.S. Cybersecurity Investigations & Intelligence
+              </div>
+
+              <div class="terminal-line output">
+                B.S. Cybersecurity & Digital Forensics
+              </div>
+
+
+              <br>
+
+
+              <div class="terminal-line">
+                <span class="prompt">
+                  dennis@security:~$
+                </span>
+
+                <span class="command">
+                  cat focus.txt
+                </span>
+              </div>
+
+              <div class="terminal-line output">
+                Network Security
+              </div>
+
+              <div class="terminal-line output">
+                System Hardening
+              </div>
+
+              <div class="terminal-line output">
+                Threat Intelligence
+              </div>
+
+              <div class="terminal-line output">
+                PKI / TLS
+              </div>
+
+              <div class="terminal-line output">
+                IAM / GRC
+              </div>
+
+
+              <br>
+
+
+              <div class="terminal-line">
+                <span class="prompt">
+                  status:
+                </span>
+
+                <span class="terminal-green">
+                  ACTIVE
+                </span>
+
+                <span class="cursor"></span>
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
-        <div class="cert-row">
+      </section>
 
-          <div>
-            <strong>Continuous Technical Development</strong>
+
+      <!-- =====================================================
+           QUICK FACTS
+           ===================================================== -->
+
+      <section class="quick-facts">
+
+        <div class="container">
+
+          <div class="fact-grid reveal">
+
+            <div class="fact">
+
+              <div class="fact-number">
+                2
+              </div>
+
+              <div class="fact-label">
+                Cybersecurity Degrees
+              </div>
+
+            </div>
+
+
+            <div class="fact">
+
+              <div class="fact-number">
+                80 TB
+              </div>
+
+              <div class="fact-label">
+                Multi-Purpose Home Lab
+              </div>
+
+            </div>
+
+
+            <div class="fact">
+
+              <div class="fact-number">
+                ~40
+              </div>
+
+              <div class="fact-label">
+                Page Graduate Investigation
+              </div>
+
+            </div>
+
+
+            <div class="fact">
+
+              <div class="fact-number">
+                800+
+              </div>
+
+              <div class="fact-label">
+                Hockey Games Officiated
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           ABOUT
+           ===================================================== -->
+
+      <section
+        id="about"
+        class="section"
+      >
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number">
+              01 // WHOAMI
+            </p>
+
+            <h2 class="section-title">
+              More than a list of tools.
+            </h2>
+
+            <p class="section-description">
+              My cybersecurity background combines formal
+              education, professional experience,
+              hands-on infrastructure work, technical
+              research, and practical security labs.
+            </p>
+
+          </div>
+
+
+          <div class="about-grid">
+
+
+            <div class="about-copy reveal">
+
+              <p>
+                I'm <strong>Dennis Kalinin</strong>, a
+                cybersecurity professional with a background
+                spanning enterprise security, digital
+                forensics, infrastructure, threat analysis,
+                and both offensive and defensive security.
+              </p>
+
+              <p>
+                I earned my
+                <strong>
+                  M.S. in Cybersecurity Investigations and Intelligence
+                </strong>
+                from Robert Morris University after completing
+                my
+                <strong>
+                  B.S. in Cybersecurity and Digital Forensics.
+                </strong>
+                My education has been reinforced by hands-on
+                work securing systems, analyzing network
+                traffic, researching threat actors,
+                evaluating vulnerabilities, and documenting
+                security risk.
+              </p>
+
+              <p>
+                Outside formal work, I maintain a substantial
+                cybersecurity home lab where I experiment
+                with storage, networking, monitoring,
+                segmentation, virtualization, remote access,
+                and defensive security technologies.
+              </p>
+
+            </div>
+
+
+            <div class="about-side">
+
+              <div class="identity-card blue reveal">
+
+                <div class="identity-card-label">
+                  Current Role
+                </div>
+
+                <div class="identity-card-value">
+                  Cybersecurity Engineer in Training
+                </div>
+
+              </div>
+
+
+              <div class="identity-card burgundy reveal">
+
+                <div class="identity-card-label">
+                  Academic Focus
+                </div>
+
+                <div class="identity-card-value">
+                  Cybersecurity Investigations & Intelligence
+                </div>
+
+              </div>
+
+
+              <div class="identity-card blue reveal">
+
+                <div class="identity-card-label">
+                  Security Interests
+                </div>
+
+                <div class="identity-card-value">
+                  Enterprise Defense • Infrastructure • Threat Analysis
+                </div>
+
+              </div>
+
+
+              <div class="identity-card burgundy reveal">
+
+                <div class="identity-card-label">
+                  Approach
+                </div>
+
+                <div class="identity-card-value">
+                  Understand it. Test it. Secure it. Document it.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           EXPERIENCE
+           ===================================================== -->
+
+      <section
+        id="experience"
+        class="section"
+      >
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number burgundy">
+              02 // EXPERIENCE
+            </p>
+
+            <h2 class="section-title">
+              Security in practice.
+            </h2>
+
+            <p class="section-description">
+              Professional and hands-on experience spanning
+              enterprise cybersecurity development,
+              infrastructure security, monitoring,
+              segmentation, and technical support.
+            </p>
+
+          </div>
+
+
+          <div class="timeline">
+
+
+            <!-- PNC -->
+
+            <div class="timeline-item reveal">
+
+              <span class="timeline-node"></span>
+
+              <p class="timeline-date">
+                AUG 2026 — PRESENT
+              </p>
+
+              <h3 class="timeline-role">
+                Cybersecurity Engineer in Training
+              </h3>
+
+              <p class="timeline-company">
+                PNC Financial Corporation
+              </p>
+
+              <div class="timeline-description">
+
+                <p>
+                  Developing practical enterprise
+                  cybersecurity experience through an
+                  intensive technical program covering
+                  infrastructure security, defensive
+                  controls, threat analysis, and security
+                  communication.
+                </p>
+
+                <ul>
+                  <li>
+                    Applied Linux and Windows security
+                    hardening techniques across authentication,
+                    access control, host security, and system
+                    configuration.
+                  </li>
+
+                  <li>
+                    Performed network-security labs involving
+                    enumeration, traffic analysis, ARP and
+                    man-in-the-middle concepts, and defensive
+                    mitigation strategies.
+                  </li>
+
+                  <li>
+                    Built and evaluated PKI and TLS
+                    configurations using certificate
+                    authorities, OpenSSL, certificate-chain
+                    validation, protocol testing, and
+                    remediation analysis.
+                  </li>
+
+                  <li>
+                    Developed security-policy experience with
+                    firewall rules, threat prevention,
+                    URL filtering, application controls,
+                    logging, and least-privilege design.
+                  </li>
+
+                  <li>
+                    Completed virtualization, RBAC,
+                    password-security, and authentication
+                    security exercises.
+                  </li>
+                </ul>
+
+              </div>
+
+            </div>
+
+
+            <!-- YK -->
+
+            <div class="timeline-item reveal">
+
+              <span class="timeline-node"></span>
+
+              <p class="timeline-date">
+                MAY 2024 — JUN 2026
+              </p>
+
+              <h3 class="timeline-role">
+                Cybersecurity Specialist
+              </h3>
+
+              <p class="timeline-company">
+                YK Consulting, LLC
+              </p>
+
+              <div class="timeline-description">
+
+                <ul>
+
+                  <li>
+                    Led deployment of a 25 TB SSD storage
+                    server using Zima OS and RAID 10 to
+                    support high-performance,
+                    fault-tolerant storage.
+                  </li>
+
+                  <li>
+                    Implemented segmented storage access,
+                    redundancy, backup offloading,
+                    network-level filtering, and secure
+                    remote connectivity.
+                  </li>
+
+                  <li>
+                    Supported applications and technical
+                    incidents through osTicket to improve
+                    reliability and user-support workflows.
+                  </li>
+
+                  <li>
+                    Implemented layered defensive controls
+                    using Snort and Suricata for network
+                    monitoring and TrueNAS for secure
+                    data management.
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           FEATURED WORK
+           ===================================================== -->
+
+      <section
+        id="work"
+        class="section"
+      >
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number">
+              03 // FEATURED WORK
+            </p>
+
+            <h2 class="section-title">
+              Work backed by evidence.
+            </h2>
+
+            <p class="section-description">
+              Selected projects and investigations that
+              demonstrate technical testing, security
+              analysis, research, documentation, and
+              remediation.
+            </p>
+
+          </div>
+
+
+          <div class="project-grid">
+
+
+            <!-- TLS Audit -->
+
+            <article class="project-card reveal">
+
+              <div class="project-top">
+
+                <span class="project-number">
+                  01
+                </span>
+
+                <span class="project-type">
+                  PUBLISHED ASSESSMENT
+                </span>
+
+              </div>
+
+              <h3>
+                TLS & Certificate Security Audit
+              </h3>
+
+              <p>
+                Passive assessment of public TLS
+                configurations using Qualys SSL Labs and
+                OpenSSL. Evaluated deprecated protocols,
+                certificate trust chains, cipher suites,
+                forward secrecy, and configuration risk
+                across multiple public systems.
+              </p>
+
+              <div class="tags">
+                <span class="tag">OpenSSL</span>
+                <span class="tag">TLS</span>
+                <span class="tag">PKI</span>
+                <span class="tag">SSL Labs</span>
+                <span class="tag">Risk Analysis</span>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/tls-audits/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VIEW TLS AUDIT TABLE OF CONTENTS →
+              </a>
+
+            </article>
+
+
+            <!-- Graduate Capstone -->
+
+            <article class="project-card burgundy reveal">
+
+              <div class="project-top">
+
+                <span class="project-number">
+                  02
+                </span>
+
+                <span class="project-type">
+                  GRADUATE CAPSTONE
+                </span>
+
+              </div>
+
+              <h3>
+                Scattered Spider Threat Intelligence Investigation
+              </h3>
+
+              <p>
+                Approximately 40-page intelligence-style
+                investigation of Scattered Spider examining
+                identity-centric intrusion tactics, social
+                engineering, attribution, MITRE ATT&CK
+                mapping, major case studies, law-enforcement
+                activity, extortion models, mitigation
+                priorities, and future threat outlook.
+              </p>
+
+              <div class="tags">
+                <span class="tag">Threat Intelligence</span>
+                <span class="tag">Scattered Spider</span>
+                <span class="tag">MITRE ATT&CK</span>
+                <span class="tag">OSINT</span>
+                <span class="tag">ACH</span>
+                <span class="tag">Investigation</span>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/research-and-writeups/scattered-spider-masters-capstone.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VIEW MASTER'S CAPSTONE →
+              </a>
+
+            </article>
+
+
+            <!-- Financial Sector -->
+
+            <article class="project-card burgundy reveal">
+
+              <div class="project-top">
+
+                <span class="project-number">
+                  03
+                </span>
+
+                <span class="project-type">
+                  UNDERGRADUATE CAPSTONE
+                </span>
+
+              </div>
+
+              <h3>
+                Cyber Threat Analysis in the Financial Sector
+              </h3>
+
+              <p>
+                Undergraduate cybersecurity capstone
+                examining SQL Injection, phishing, and
+                ransomware threats affecting financial
+                institutions, with analysis of real-world
+                incidents, technical controls, employee
+                security, resilience, and layered
+                defensive strategies.
+              </p>
+
+              <div class="tags">
+                <span class="tag">Financial Security</span>
+                <span class="tag">SQL Injection</span>
+                <span class="tag">Phishing</span>
+                <span class="tag">Ransomware</span>
+                <span class="tag">Risk Analysis</span>
+                <span class="tag">Defense</span>
+              </div>
+
+              <a
+                class="project-link"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/research-and-writeups/financial-sector-undergraduate-capstone.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VIEW UNDERGRADUATE CAPSTONE →
+              </a>
+
+            </article>
+
+
+            <!-- Home Lab -->
+
+            <article class="project-card reveal">
+
+              <div class="project-top">
+
+                <span class="project-number">
+                  04
+                </span>
+
+                <span class="project-type">
+                  INFRASTRUCTURE PROJECT
+                </span>
+
+              </div>
+
+              <h3>
+                Cybersecurity Home Lab
+              </h3>
+
+              <p>
+                Built and maintain an 80 TB multi-purpose
+                lab environment supporting network storage,
+                media services, network-wide filtering,
+                authenticated remote access, monitoring,
+                and ongoing infrastructure and security
+                experimentation.
+              </p>
+
+              <div class="tags">
+                <span class="tag">TrueNAS</span>
+                <span class="tag">RAID</span>
+                <span class="tag">Pi-hole</span>
+                <span class="tag">VPN</span>
+                <span class="tag">Snort</span>
+                <span class="tag">Suricata</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/research-and-writeups/homelab.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VIEW HOME LAB BUILD →
+              </a>
+
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           PNC LAB HIGHLIGHTS
+           ===================================================== -->
+
+      <section
+        id="labs"
+        class="section"
+      >
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number burgundy">
+              04 // HANDS-ON OPERATIONS
+            </p>
+
+            <h2 class="section-title">
+              From theory to implementation.
+            </h2>
+
+            <p class="section-description">
+              Selected hands-on cybersecurity labs covering
+              defensive engineering, attack concepts,
+              system security, authentication, PKI,
+              access control, and enterprise controls.
+            </p>
+
+          </div>
+
+
+          <div class="lab-grid">
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                LNX
+              </div>
+
+              <h3>
+                Linux System Hardening
+              </h3>
+
+              <p>
+                Password policy, account auditing,
+                permissions, AppArmor, AIDE,
+                SSH security, Fail2ban,
+                and service minimization.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                WIN
+              </div>
+
+              <h3>
+                Windows Security Hardening
+              </h3>
+
+              <p>
+                Password and lockout policies,
+                local groups, Windows Firewall,
+                services, BitLocker, and
+                security-control verification.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                NET
+              </div>
+
+              <h3>
+                Network Enumeration
+              </h3>
+
+              <p>
+                Host discovery, service enumeration,
+                Nmap scripting, exposed-service
+                analysis, and defensive
+                recommendations.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                AITM
+              </div>
+
+              <h3>
+                ARP & AitM Security
+              </h3>
+
+              <p>
+                ARP poisoning, traffic-path analysis,
+                IP forwarding, interception concepts,
+                DHCP security, and defensive controls
+                including DAI and DHCP snooping.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                AUTH
+              </div>
+
+              <h3>
+                Password Attack & Defense
+              </h3>
+
+              <p>
+                Hashing, salting, rainbow tables,
+                Hashcat, Hydra, dictionary and mask
+                attacks, spraying, credential
+                stuffing, and authentication defenses.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                PKI
+              </div>
+
+              <h3>
+                Internal CA & TLS
+              </h3>
+
+              <p>
+                Root CA creation, CSRs, certificate
+                issuance, browser trust, OpenSSL
+                validation, TLS protocol testing,
+                and chain-of-trust analysis.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                IAM
+              </div>
+
+              <h3>
+                Hyper-V RBAC Design
+              </h3>
+
+              <p>
+                Least privilege, role design,
+                Active Directory security groups,
+                access matrices, enforcement
+                limitations, and residual risk.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                FW
+              </div>
+
+              <h3>
+                Enterprise Firewall Security
+              </h3>
+
+              <p>
+                Default-deny policy, App-ID,
+                logging, Threat Prevention,
+                URL Filtering, file controls,
+                and security-rule analysis.
+              </p>
+
+            </div>
+
+
+            <div class="lab-card reveal">
+
+              <div class="lab-icon">
+                TLS
+              </div>
+
+              <h3>
+                TLS Configuration Analysis
+              </h3>
+
+              <p>
+                Deprecated TLS protocols,
+                weak cipher suites,
+                certificate-chain failures,
+                severity assessment,
+                attacker impact, and remediation.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           TECHNICAL SKILLS
+           ===================================================== -->
+
+      <section
+        id="skills"
+        class="section"
+      >
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number">
+              05 // TECHNICAL ARSENAL
+            </p>
+
+            <h2 class="section-title">
+              Tools support the mission.
+            </h2>
+
+            <p class="section-description">
+              Technologies I've used across academic work,
+              professional experience, home-lab projects,
+              security research, and hands-on exercises.
+            </p>
+
+          </div>
+
+
+          <div class="skill-grid">
+
+
+            <div class="skill-card reveal">
+
+              <p class="skill-label">
+                NETWORK & ANALYSIS
+              </p>
+
+              <div class="tool-list">
+                <span class="tool">Wireshark</span>
+                <span class="tool">Nmap</span>
+                <span class="tool">TCP/IP</span>
+                <span class="tool">DNS</span>
+                <span class="tool">DHCP</span>
+                <span class="tool">VPN</span>
+                <span class="tool">LAN/WAN</span>
+                <span class="tool">Firewalls</span>
+              </div>
+
+            </div>
+
+
+            <div class="skill-card reveal">
+
+              <p class="skill-label">
+                SECURITY TESTING
+              </p>
+
+              <div class="tool-list">
+                <span class="tool">Burp Suite</span>
+                <span class="tool">Metasploit</span>
+                <span class="tool">Hashcat</span>
+                <span class="tool">Hydra</span>
+                <span class="tool">Ghidra</span>
+                <span class="tool">AppScan</span>
+                <span class="tool">OpenSSL</span>
+              </div>
+
+            </div>
+
+
+            <div class="skill-card reveal">
+
+              <p class="skill-label">
+                SECURITY OPERATIONS
+              </p>
+
+              <div class="tool-list">
+                <span class="tool">Splunk</span>
+                <span class="tool">Snort</span>
+                <span class="tool">Suricata</span>
+                <span class="tool">Threat Analysis</span>
+                <span class="tool">Vulnerability Management</span>
+                <span class="tool">Digital Forensics</span>
+              </div>
+
+            </div>
+
+
+            <div class="skill-card reveal">
+
+              <p class="skill-label">
+                SYSTEMS
+              </p>
+
+              <div class="tool-list">
+                <span class="tool">Kali Linux</span>
+                <span class="tool">Ubuntu</span>
+                <span class="tool">Windows</span>
+                <span class="tool">macOS</span>
+                <span class="tool">TrueNAS</span>
+                <span class="tool">Zima OS</span>
+                <span class="tool">AppArmor</span>
+              </div>
+
+            </div>
+
+
+            <div class="skill-card reveal">
+
+              <p class="skill-label">
+                CLOUD & INFRASTRUCTURE
+              </p>
+
+              <div class="tool-list">
+                <span class="tool">Azure</span>
+                <span class="tool">Hyper-V</span>
+                <span class="tool">Microsoft Defender</span>
+                <span class="tool">Palo Alto</span>
+                <span class="tool">Git</span>
+                <span class="tool">GitHub</span>
+              </div>
+
+            </div>
+
+
+            <div class="skill-card reveal">
+
+              <p class="skill-label">
+                PROGRAMMING & SCRIPTING
+              </p>
+
+              <div class="tool-list">
+                <span class="tool">Python</span>
+                <span class="tool">PowerShell</span>
+                <span class="tool">Bash</span>
+                <span class="tool">HTML</span>
+                <span class="tool">JavaScript</span>
+                <span class="tool">Java</span>
+                <span class="tool">C++</span>
+                <span class="tool">SQL</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           HOMELAB
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number burgundy">
+              06 // HOMELAB
+            </p>
+
+            <h2 class="section-title">
+              My environment for experimentation.
+            </h2>
+
+            <p class="section-description">
+              A long-term technical environment used to
+              understand infrastructure from the inside out
+              and test technologies beyond the classroom.
+            </p>
+
+          </div>
+
+
+          <div class="homelab">
+
+
+            <div class="homelab-main reveal">
+
+              <div class="homelab-big">
+                80 <span>TB</span>
+              </div>
+
+              <p class="homelab-sub">
+                MULTI-PURPOSE INFRASTRUCTURE LAB
+              </p>
+
+              <p>
+                Built and maintain a large home-lab
+                environment supporting NAS functionality,
+                media services, network-wide filtering,
+                authenticated remote access, storage
+                redundancy, defensive monitoring, and
+                ongoing cybersecurity experimentation.
+              </p>
+
+            </div>
+
+
+            <div class="homelab-architecture reveal">
+
+              <p class="architecture-title">
+                SYSTEM COMPONENTS
+              </p>
+
+
+              <div class="architecture-grid">
+
+                <div class="architecture-item">
+
+                  <strong>
+                    Storage
+                  </strong>
+
+                  <span>
+                    TrueNAS • RAID • SSD storage • backup
+                  </span>
+
+                </div>
+
+
+                <div class="architecture-item">
+
+                  <strong>
+                    Security
+                  </strong>
+
+                  <span>
+                    Snort • Suricata • monitoring
+                  </span>
+
+                </div>
+
+
+                <div class="architecture-item">
+
+                  <strong>
+                    Networking
+                  </strong>
+
+                  <span>
+                    Pi-hole • VPN • segmentation
+                  </span>
+
+                </div>
+
+
+                <div class="architecture-item">
+
+                  <strong>
+                    Services
+                  </strong>
+
+                  <span>
+                    NAS • media • remote access
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           EDUCATION
+           ===================================================== -->
+
+      <section
+        id="education"
+        class="section"
+      >
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number">
+              07 // EDUCATION
+            </p>
+
+            <h2 class="section-title">
+              Academic foundation.
+            </h2>
+
+            <p class="section-description">
+              Formal cybersecurity education focused on
+              investigations, digital forensics,
+              threat analysis, security engineering,
+              and cyber operations.
+            </p>
+
+          </div>
+
+
+          <div class="education-grid">
+
+
+            <div class="education-card reveal">
+
+              <p class="education-school">
+                ROBERT MORRIS UNIVERSITY
+              </p>
+
+              <h3>
+                M.S. Cybersecurity Investigations
+                & Intelligence
+              </h3>
+
+              <p class="section-description">
+                Graduate-level cybersecurity studies
+                focused on investigation, intelligence,
+                security analysis, and advanced
+                cyber operations.
+              </p>
+
+              <div class="education-meta">
+                <span>May 2026</span>
+                <span>GPA 3.80</span>
+                <span>Graduate Degree</span>
+              </div>
+
+            </div>
+
+
+            <div class="education-card reveal">
+
+              <p class="education-school">
+                ROBERT MORRIS UNIVERSITY
+              </p>
+
+              <h3>
+                B.S. Cybersecurity
+                & Digital Forensics
+              </h3>
+
+              <p class="section-description">
+                Undergraduate foundation spanning
+                cybersecurity operations, networking,
+                digital forensics, security tools,
+                risk, and technical investigation.
+              </p>
+
+              <div class="education-meta">
+                <span>June 2025</span>
+                <span>GPA 3.50</span>
+                <span>Bachelor's Degree</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           TRAINING
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number burgundy">
+              08 // PROFESSIONAL DEVELOPMENT
+            </p>
+
+            <h2 class="section-title">
+              Continuous learning.
+            </h2>
+
+            <p class="section-description">
+              Technical training and continued
+              professional development supporting
+              my hands-on cybersecurity experience.
+            </p>
+
+          </div>
+
+
+          <div class="training-grid">
+
+
+            <div class="training-card reveal">
+
+              <p class="training-status">
+                CBT NUGGETS // COURSE COMPLETION
+              </p>
+
+              <h3>
+                CompTIA A+ (220-1101)
+              </h3>
+
+              <p>
+                27 hours, 41 minutes of training.
+                Completed June 2024.
+              </p>
+
+            </div>
+
+
+            <div class="training-card reveal">
+
+              <p class="training-status">
+                CBT NUGGETS // COURSE COMPLETION
+              </p>
+
+              <h3>
+                CompTIA IT Fundamentals+
+              </h3>
+
+              <p>
+                FC0-U61 training course.
+                26 hours, 17 minutes.
+                Completed August 2024.
+              </p>
+
+            </div>
+
+
+            <div class="training-card reveal">
+
+              <p class="training-status">
+                CURRENT DEVELOPMENT
+              </p>
+
+              <h3>
+                CompTIA Security+
+              </h3>
+
+              <p>
+                Continuing security-focused study and
+                professional development.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           BEYOND CYBER
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number">
+              09 // BEYOND CYBERSECURITY
+            </p>
+
+            <h2 class="section-title">
+              Decision-making under pressure.
+            </h2>
+
+          </div>
+
+
+          <div class="beyond-grid">
+
+
+            <div class="beyond-main reveal">
+
+              <div class="beyond-number">
+                800+
+              </div>
+
+              <h3>
+                Amateur Hockey Games Officiated
+              </h3>
+
+              <p>
+                As a tenured USA Hockey Level 4 referee —
+                the highest officiating level — I have
+                officiated more than 800 games, including
+                the highest tiers of college hockey and
+                junior semi-professional competition.
+                I have maintained Level 4 status for
+                approximately three years.
+              </p>
+
+              <p style="margin-top:15px;">
+                Officiating at this level requires rapid
+                decision-making, consistent rule enforcement,
+                conflict management, clear communication,
+                situational awareness, and composure in
+                high-pressure environments. I have also
+                evaluated developing officials and provided
+                performance feedback based on observed
+                game situations.
+              </p>
+
+            </div>
+
+
+            <div class="beyond-side reveal">
+
+              <h3>
+                Community & Academic Involvement
+              </h3>
+
+              <ul class="community-list">
+
+                <li>
+                  RMU Dean's Academic Achievement List
+                </li>
+
+                <li>
+                  RMU Top-Secret Colonials Cyber Club
+                  board member
+                </li>
+
+                <li>
+                  RMU Study Abroad participant —
+                  Sweden and Norway
+                </li>
+
+                <li>
+                  ISC2 Cybersecurity Professionals
+                  Association member
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="divider"></div>
+
+
+      <!-- =====================================================
+           REPOSITORY
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="section-header reveal">
+
+            <p class="section-number burgundy">
+              10 // REPOSITORY
+            </p>
+
+            <h2 class="section-title">
+              Explore the evidence.
+            </h2>
+
+            <p class="section-description">
+              Reports, security research, lab work,
+              templates, tooling, and supporting
+              technical documentation live in the
+              GitHub repository behind this portfolio.
+            </p>
+
+          </div>
+
+
+          <div class="repo-terminal reveal">
+
+            <div class="repo-terminal-header">
+              dk-security@github:
+              ~/cybersecurity-portfolio
+            </div>
+
+
+            <div class="repo-terminal-body">
+
+              <p class="repo-command">
+                <span>$</span>
+                ls -la ~/security-work/
+              </p>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/soc-tools"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                soc-tools/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/malware-analysis"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                malware-analysis/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/grc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                grc/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/research-and-writeups"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                research-and-writeups/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/presentations"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                presentations/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/templates"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                templates/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/tls-audits"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                tls-audits/
+              </a>
+
+
+              <a
+                class="repo-item"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/certifications-and-skills"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                certifications-and-skills/
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           CONTACT
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="contact-card reveal">
+
+            <p class="section-number">
+              CONNECTION // OPEN
+            </p>
+
+            <h2>
+              Security is strongest when
+              learning never stops.
+            </h2>
 
             <p>
-              Maintaining a growing portfolio of cybersecurity labs,
-              research, projects, and technical documentation.
+              This portfolio is a living record of my
+              cybersecurity development. New assessments,
+              labs, research, and projects will continue
+              to be added as my technical experience grows.
             </p>
+
+            <div class="hero-buttons">
+
+              <a
+                class="button button-primary"
+                href="https://github.com/dkalinin96"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="mailto:kalinindennis96@gmail.com"
+              >
+                Email
+              </a>
+
+            </div>
+
           </div>
 
-          <span class="status">ACTIVE</span>
-
         </div>
 
-      </div>
+      </section>
 
-    </section>
 
-    <!-- Repository -->
+    </main>
 
-    <section id="repository">
 
-      <h2 class="section-title">Explore the Repository</h2>
-
-      <p class="section-description">
-        The GitHub repository behind this site contains the evidence and
-        documentation supporting the skills shown above.
-      </p>
-
-      <div class="grid">
-
-        <div class="card repo-card">
-
-          <h3>Research & Writeups</h3>
-
-          <p>
-            Incident analysis, security research, and technical explanations.
-          </p>
-
-          <br>
-
-          <a
-            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/research-and-writeups"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Folder →
-          </a>
-
-        </div>
-
-        <div class="card repo-card">
-
-          <h3>SOC Tools</h3>
-
-          <p>
-            Security operations projects, detection work, and technical exercises.
-          </p>
-
-          <br>
-
-          <a
-            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/soc-tools"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Folder →
-          </a>
-
-        </div>
-
-        <div class="card repo-card">
-
-          <h3>GRC</h3>
-
-          <p>
-            Governance, risk, compliance, access control,
-            and security framework work.
-          </p>
-
-          <br>
-
-          <a
-            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/grc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Folder →
-          </a>
-
-        </div>
-
-        <div class="card repo-card">
-
-          <h3>Certifications & Skills</h3>
-
-          <p>
-            A living tracker of certifications, labs, tools,
-            and technical development.
-          </p>
-
-          <br>
-
-          <a
-            href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/certifications-and-skills/tracker.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Tracker →
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- Footer -->
+    <!-- =======================================================
+         FOOTER
+         ======================================================= -->
 
     <footer>
-      <p>Dennis Kalinin • Cybersecurity Portfolio</p>
-      <p>Built as a living record of hands-on cybersecurity development.</p>
+
+      <div class="container footer-content">
+
+        <div>
+
+          <strong style="color:var(--white);">
+            Dennis Kalinin
+          </strong>
+
+          <br>
+
+          Cybersecurity Portfolio •
+          <span id="currentYear"></span>
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <a
+            href="https://github.com/dkalinin96"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+
+          <a href="#top">
+            Back to Top ↑
+          </a>
+
+        </div>
+
+      </div>
+
     </footer>
 
-    <!-- =========================
+
+    <!-- =======================================================
          FLOATING GITHUB QR
-         ========================= -->
+         ======================================================= -->
 
     <div class="qr-floating-container">
+
 
       <div
         id="qrPopup"
         class="qr-popup"
         role="dialog"
         aria-labelledby="qrPopupTitle"
+        aria-hidden="true"
       >
 
         <button
-          class="qr-popup-close"
+          class="qr-close"
           onclick="closeQrPopup()"
-          aria-label="Close QR code"
+          aria-label="Close QR popup"
         >
           ×
         </button>
 
-        <p class="qr-popup-label">GITHUB REPOSITORY</p>
 
-        <h3 id="qrPopupTitle">To My Repository!</h3>
-
-        <p class="qr-popup-description">
-          Scan this QR code to explore the projects, reports,
-          labs, and technical evidence behind this portfolio.
+        <p class="qr-label">
+          GITHUB REPOSITORY
         </p>
 
+
+        <h3 id="qrPopupTitle">
+          Explore My Work
+        </h3>
+
+
+        <p class="qr-popup-description">
+          Scan to open the GitHub repository containing
+          the projects and evidence behind this portfolio.
+        </p>
+
+
         <a
-          class="qr-image-link"
           href="https://github.com/dkalinin96/cybersecurity-portfolio"
           target="_blank"
           rel="noopener noreferrer"
@@ -958,25 +4543,23 @@
 
           <img
             src="assets/github-qr.png"
-            alt="QR code linking to Dennis Kalinin's GitHub cybersecurity repository"
+            alt="QR code linking to Dennis Kalinin's cybersecurity GitHub repository"
           >
 
         </a>
 
-        <p class="qr-popup-note">
-          Scan the code or use the button below.
-        </p>
 
         <a
-          class="qr-repo-button"
+          class="qr-link"
           href="https://github.com/dkalinin96/cybersecurity-portfolio"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open GitHub Repository
+          Open Repository
         </a>
 
       </div>
+
 
       <button
         id="qrFloatButton"
@@ -985,71 +4568,440 @@
         aria-label="Show GitHub repository QR code"
         aria-expanded="false"
       >
-        QR
+
+        <div class="scan-icon">
+          <div class="scan-center"></div>
+        </div>
 
         <span class="qr-tooltip">
-          QR code here!
+          Scan to view repository
         </span>
 
       </button>
 
     </div>
 
+
   </div>
 
-  <!-- =========================
-       SCRIPTS
-       ========================= -->
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
 
   <script>
 
-    /* Floating QR popup */
+
+    /* =========================================================
+       MOBILE NAV
+       ========================================================= */
+
+    function toggleMobileNav() {
+
+      const nav =
+        document
+          .getElementById("navLinks");
+
+      const button =
+        document
+          .getElementById(
+            "mobileNavButton"
+          );
+
+
+      const isOpen =
+        nav
+          .classList
+          .toggle("open");
+
+
+      button
+        .setAttribute(
+          "aria-expanded",
+          isOpen
+        );
+
+    }
+
+
+    document
+      .querySelectorAll(
+        ".nav-links a"
+      )
+      .forEach(
+        link => {
+
+          link
+            .addEventListener(
+              "click",
+              () => {
+
+                document
+                  .getElementById(
+                    "navLinks"
+                  )
+                  .classList
+                  .remove("open");
+
+
+                document
+                  .getElementById(
+                    "mobileNavButton"
+                  )
+                  .setAttribute(
+                    "aria-expanded",
+                    "false"
+                  );
+
+              }
+            );
+
+        }
+      );
+
+
+    /* =========================================================
+       FLOATING QR POPUP
+       ========================================================= */
 
     function toggleQrPopup() {
-      const popup = document.getElementById('qrPopup');
-      const button = document.getElementById('qrFloatButton');
 
-      const isOpen = popup.classList.toggle('open');
+      const popup =
+        document
+          .getElementById(
+            "qrPopup"
+          );
 
-      button.setAttribute('aria-expanded', isOpen);
+      const button =
+        document
+          .getElementById(
+            "qrFloatButton"
+          );
+
+
+      const isOpen =
+        popup
+          .classList
+          .toggle("open");
+
+
+      popup
+        .setAttribute(
+          "aria-hidden",
+          !isOpen
+        );
+
+
+      button
+        .setAttribute(
+          "aria-expanded",
+          isOpen
+        );
+
     }
 
 
     function closeQrPopup() {
-      const popup = document.getElementById('qrPopup');
-      const button = document.getElementById('qrFloatButton');
 
-      popup.classList.remove('open');
+      const popup =
+        document
+          .getElementById(
+            "qrPopup"
+          );
 
-      button.setAttribute('aria-expanded', 'false');
+      const button =
+        document
+          .getElementById(
+            "qrFloatButton"
+          );
+
+
+      popup
+        .classList
+        .remove("open");
+
+
+      popup
+        .setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+
+      button
+        .setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
     }
 
 
-    /* Close popup with Escape */
+    document
+      .addEventListener(
+        "keydown",
+        event => {
 
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeQrPopup();
+          if (
+            event.key ===
+            "Escape"
+          ) {
+
+            closeQrPopup();
+
+          }
+
+        }
+      );
+
+
+    document
+      .addEventListener(
+        "click",
+        event => {
+
+          const popup =
+            document
+              .getElementById(
+                "qrPopup"
+              );
+
+          const button =
+            document
+              .getElementById(
+                "qrFloatButton"
+              );
+
+
+          if (
+            popup &&
+            button &&
+            popup
+              .classList
+              .contains("open") &&
+            !popup
+              .contains(
+                event.target
+              ) &&
+            !button
+              .contains(
+                event.target
+              )
+          ) {
+
+            closeQrPopup();
+
+          }
+
+        }
+      );
+
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    let revealStarted = false;
+
+
+    function startRevealObserver() {
+
+      if (revealStarted) {
+        return;
       }
-    });
 
 
-    /* Close popup when clicking elsewhere */
+      revealStarted = true;
 
-    document.addEventListener('click', function(event) {
-      const popup = document.getElementById('qrPopup');
-      const button = document.getElementById('qrFloatButton');
+
+      const elements =
+        document
+          .querySelectorAll(
+            ".reveal"
+          );
+
 
       if (
-        popup.classList.contains('open') &&
-        !popup.contains(event.target) &&
-        !button.contains(event.target)
+        !(
+          "IntersectionObserver"
+          in window
+        )
       ) {
-        closeQrPopup();
-      }
-    });
 
-  </script>
+        elements
+          .forEach(
+            element =>
+              element
+                .classList
+                .add("visible")
+          );
+
+        return;
+
+      }
+
+
+      const observer =
+        new IntersectionObserver(
+          entries => {
+
+            entries
+              .forEach(
+                entry => {
+
+                  if (
+                    entry
+                      .isIntersecting
+                  ) {
+
+                    entry
+                      .target
+                      .classList
+                      .add(
+                        "visible"
+                      );
+
+
+                    observer
+                      .unobserve(
+                        entry.target
+                      );
+
+                  }
+
+                }
+              );
+
+          },
+          {
+            threshold: 0.12
+          }
+        );
+
+
+      elements
+        .forEach(
+          element =>
+            observer
+              .observe(element)
+        );
+
+    }
+
+
+    /* =========================================================
+       ACTIVE NAVIGATION
+       ========================================================= */
+
+    const observedSections =
+      document
+        .querySelectorAll(
+          "main section[id]"
+        );
+
+
+    const navAnchors =
+      document
+        .querySelectorAll(
+          ".nav-links a"
+        );
+
+
+    if (
+      "IntersectionObserver"
+      in window
+    ) {
+
+      const sectionObserver =
+        new IntersectionObserver(
+          entries => {
+
+            entries
+              .forEach(
+                entry => {
+
+                  if (
+                    entry
+                      .isIntersecting
+                  ) {
+
+                    const id =
+                      entry
+                        .target
+                        .id;
+
+
+                    navAnchors
+                      .forEach(
+                        link => {
+
+                          link
+                            .classList
+                            .toggle(
+                              "active",
+                              link
+                                .getAttribute(
+                                  "href"
+                                ) ===
+                              "#" + id
+                            );
+
+                        }
+                      );
+
+                  }
+
+                }
+              );
+
+          },
+          {
+            rootMargin:
+              "-35% 0px -55% 0px"
+          }
+        );
+
+
+      observedSections
+        .forEach(
+          section =>
+            sectionObserver
+              .observe(section)
+        );
+
+    }
+
+
+    /* =========================================================
+       CURRENT YEAR
+       ========================================================= */
+
+    document
+      .getElementById(
+        "currentYear"
+      )
+      .textContent =
+        new Date()
+          .getFullYear();
+
+
+
+
+    /* =========================================================
+       PRODUCTION INITIALIZATION
+       ========================================================= */
+
+    window.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        startRevealObserver();
+      }
+    );
+
+
+</script>
+
 
 </body>
+
 </html>
