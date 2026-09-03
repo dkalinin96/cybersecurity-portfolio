@@ -46,7 +46,7 @@ The environment supports:
 - Linux and Docker administration
 - Storage, networking, and cybersecurity experimentation
 
-[View Home Lab Build & Architecture →](homelab/)
+[View Home Lab Build & Architecture →](homelab.md)
 
 ---
 
