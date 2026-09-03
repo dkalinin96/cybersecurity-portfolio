@@ -2,7 +2,11 @@
 
 ## About Me
 
-I am a cybersecurity professional developing hands-on experience across networking, system administration, security operations, virtualization, cryptography, and defensive security. My goal is to continue building practical technical skills while developing a portfolio that demonstrates not only what I know, but what I have actually built and tested.
+I am a cybersecurity professional developing hands-on experience across networking, system administration, security operations, virtualization, cryptography, and defensive security.
+
+My goal is to continue building practical technical skills while developing a portfolio that demonstrates not only what I know, but what I have actually built and tested.
+
+---
 
 ## Goals
 
@@ -11,6 +15,8 @@ I am a cybersecurity professional developing hands-on experience across networki
 - Build a professional portfolio of labs, research, presentations, and technical projects
 - Continue expanding my certifications and technical knowledge
 - Grow into a cybersecurity role where I can contribute to protecting enterprise systems and data
+
+---
 
 ## Skills at a Glance
 
@@ -25,32 +31,45 @@ I am a cybersecurity professional developing hands-on experience across networki
 | Governance, Risk & Compliance | NIST CSF, security policies, least privilege, access control concepts |
 | Security Research | Vulnerability research, incident analysis, technical documentation |
 
+---
+
 ## What's In This Repository
 
 | Folder | What You'll Find |
 |---|---|
-| [soc-tools](./soc-tools) | Security operations tools, detection content, and SOC-related projects |
-| [malware-analysis](./malware-analysis) | Malware research and analysis writeups |
-| [grc](./grc) | Governance, risk, compliance, policies, and security framework work |
-| [research-and-writeups](./research-and-writeups) | Cybersecurity research, incident analysis, and technical writeups |
-| [presentations](./presentations) | Cybersecurity presentations and supporting material |
-| [templates](./templates) | Reusable cybersecurity documentation, checklists, and report templates |
-| [certifications-and-skills](./certifications-and-skills) | Certification progress and hands-on skills tracker |
-| [tls-audits](./tls-audits) | TLS and certificate security audit projects |
-| [site](./site) | Source files for my cybersecurity portfolio website |
+| [soc-tools](soc-tools/) | Security operations tools, detection content, and SOC-related projects |
+| [malware-analysis](malware-analysis/) | Malware research and analysis writeups |
+| [grc](grc/) | Governance, risk, compliance, policies, and security framework work |
+| [research-and-writeups](research-and-writeups/) | Cybersecurity research, incident analysis, and technical writeups |
+| [presentations](presentations/) | Cybersecurity presentations and supporting material |
+| [templates](templates/) | Reusable cybersecurity documentation, checklists, and report templates |
+| [certifications-and-skills](certifications-and-skills/) | Certification progress and hands-on skills tracker |
+| [tls-audits](tls-audits/) | TLS and certificate security audit projects |
+| [site](site/) | Source files for my cybersecurity portfolio website |
+
+---
 
 ## Website
 
-Portfolio website deployment is currently in progress.
+### [Visit My Cybersecurity Portfolio](https://dkalinin96.github.io/cybersecurity-portfolio/)
 
-Planned production URL:
+<a href="https://dkalinin96.github.io/cybersecurity-portfolio/">
+  <img
+    src="site/assets/qr-code.png"
+    alt="QR code linking to Dennis Kalinin's cybersecurity portfolio website"
+    width="120"
+  >
+</a>
 
-`https://dkalinin96.github.io/cybersecurity-portfolio/`
+Scan the QR code above to open the public portfolio on a mobile device.
+
+---
 
 ## Contact
 
-GitHub: [dkalinin96](https://github.com/dkalinin96)
-Email: kalinindennis96@gmail.com
+**GitHub:** [dkalinin96](https://github.com/dkalinin96)
+
+**Email:** kalinindennis96@gmail.com
 
 ---
 
