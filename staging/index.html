@@ -298,46 +298,197 @@
     }
 
     /* =========================
-       QR CODE
+       FLOATING QR BUTTON
        ========================= */
 
-    .qr-wrapper {
+    .qr-floating-container {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .qr-float-button {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 2px solid #61dafb;
+      background: #61dafb;
+      color: #07111f;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(97, 218, 251, 0.18);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .qr-float-button:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.5),
+        0 0 28px rgba(97, 218, 251, 0.3);
+    }
+
+    /* Hover message */
+
+    .qr-tooltip {
+      position: absolute;
+      right: 74px;
+      bottom: 13px;
       background: #0d1a2b;
-      border-left: 4px solid #61dafb;
-      border-radius: 10px;
-      padding: 40px;
+      color: #ffffff;
+      border: 1px solid #294462;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(8px);
+      transition: all 0.2s ease;
+      pointer-events: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .qr-tooltip::after {
+      content: "";
+      position: absolute;
+      right: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 7px 0 7px 7px;
+      border-style: solid;
+      border-color: transparent transparent transparent #294462;
+    }
+
+    .qr-float-button:hover .qr-tooltip,
+    .qr-float-button:focus .qr-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    /* QR popup box */
+
+    .qr-popup {
+      width: 320px;
+      position: absolute;
+      right: 0;
+      bottom: 78px;
+      background: #0d1a2b;
+      border: 1px solid #294462;
+      border-top: 3px solid #61dafb;
+      border-radius: 12px;
+      padding: 24px;
       text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px) scale(0.97);
+      transform-origin: bottom right;
+
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
     }
 
-    .qr-wrapper h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
+    .qr-popup.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
     }
 
-    .qr-wrapper p {
-      max-width: 650px;
-      margin: 0 auto 28px;
-      color: #b4c1d1;
-    }
-
-    .qr-wrapper img {
-      width: 220px;
-      max-width: 100%;
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 10px;
+    .qr-popup-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: #9fb0c5;
+      font-size: 1.4rem;
+      cursor: pointer;
       transition: 0.2s;
     }
 
-    .qr-wrapper img:hover {
-      transform: scale(1.03);
+    .qr-popup-close:hover {
+      background: #14263d;
+      color: #61dafb;
     }
 
-    .qr-note {
-      margin-top: 20px !important;
-      margin-bottom: 0 !important;
-      font-size: 0.9rem;
-      color: #8fa1b5 !important;
+    .qr-popup-label {
+      color: #61dafb;
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1.6px;
+      margin-bottom: 5px;
+    }
+
+    .qr-popup h3 {
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .qr-popup-description {
+      color: #aebed0;
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .qr-image-link {
+      display: inline-block;
+    }
+
+    .qr-popup img {
+      display: block;
+      width: 205px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 10px;
+      background: #ffffff;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .qr-popup img:hover {
+      transform: scale(1.025);
+    }
+
+    .qr-popup-note {
+      color: #8fa1b5;
+      font-size: 0.82rem;
+      margin-top: 14px;
+      margin-bottom: 18px;
+    }
+
+    .qr-repo-button {
+      display: block;
+      width: 100%;
+      padding: 11px 14px;
+      background: #61dafb;
+      color: #07111f;
+      border-radius: 7px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .qr-repo-button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
     }
 
     /* =========================
@@ -369,12 +520,26 @@
         align-items: flex-start;
       }
 
-      .qr-wrapper {
-        padding: 30px 20px;
+      .qr-floating-container {
+        right: 16px;
+        bottom: 16px;
       }
 
-      .qr-wrapper img {
-        width: 190px;
+      .qr-float-button {
+        width: 58px;
+        height: 58px;
+      }
+
+      .qr-popup {
+        position: fixed;
+        right: 16px;
+        bottom: 88px;
+        width: calc(100vw - 32px);
+        max-width: 340px;
+      }
+
+      .qr-tooltip {
+        display: none;
       }
     }
   </style>
@@ -423,7 +588,6 @@
         <li><a href="#work">Work</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#repository">Repository</a></li>
-        <li><a href="#qr-code">QR Code</a></li>
       </ul>
     </nav>
 
@@ -772,41 +936,6 @@
 
     </section>
 
-    <!-- QR Code -->
-
-    <section id="qr-code">
-
-      <div class="qr-wrapper">
-
-        <h2>Scan to View My Portfolio</h2>
-
-        <p>
-          Scan the QR code below to open the public version of my
-          cybersecurity portfolio on any mobile device.
-        </p>
-
-        <a
-          href="https://dkalinin96.github.io/cybersecurity-portfolio/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Dennis Kalinin cybersecurity portfolio"
-        >
-
-          <img
-            src="assets/qr-code.png"
-            alt="QR code linking to Dennis Kalinin cybersecurity portfolio"
-          >
-
-        </a>
-
-        <p class="qr-note">
-          Scan or click the QR code to open the production portfolio.
-        </p>
-
-      </div>
-
-    </section>
-
     <!-- Footer -->
 
     <footer>
@@ -814,13 +943,92 @@
       <p>Built as a living record of hands-on cybersecurity development.</p>
     </footer>
 
+    <!-- =========================
+         FLOATING GITHUB QR
+         ========================= -->
+
+    <div class="qr-floating-container">
+
+      <div
+        id="qrPopup"
+        class="qr-popup"
+        role="dialog"
+        aria-labelledby="qrPopupTitle"
+      >
+
+        <button
+          class="qr-popup-close"
+          onclick="closeQrPopup()"
+          aria-label="Close QR code"
+        >
+          ×
+        </button>
+
+        <p class="qr-popup-label">GITHUB REPOSITORY</p>
+
+        <h3 id="qrPopupTitle">To My Repository!</h3>
+
+        <p class="qr-popup-description">
+          Scan this QR code to explore the projects, reports,
+          labs, and technical evidence behind this portfolio.
+        </p>
+
+        <a
+          class="qr-image-link"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <img
+            src="assets/github-qr.png"
+            alt="QR code linking to Dennis Kalinin's GitHub cybersecurity repository"
+          >
+
+        </a>
+
+        <p class="qr-popup-note">
+          Scan the code or use the button below.
+        </p>
+
+        <a
+          class="qr-repo-button"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open GitHub Repository
+        </a>
+
+      </div>
+
+      <button
+        id="qrFloatButton"
+        class="qr-float-button"
+        onclick="toggleQrPopup()"
+        aria-label="Show GitHub repository QR code"
+        aria-expanded="false"
+      >
+        QR
+
+        <span class="qr-tooltip">
+          QR code here!
+        </span>
+
+      </button>
+
+    </div>
+
   </div>
 
   <!-- =========================
-       STAGING PASSWORD SCRIPT
+       SCRIPTS
        ========================= -->
 
   <script>
+
+    /* Staging password gate */
+
     function checkPw() {
       const entered = document.getElementById('pw').value;
 
@@ -831,6 +1039,54 @@
         document.getElementById('err').style.display = 'block';
       }
     }
+
+
+    /* Floating QR popup */
+
+    function toggleQrPopup() {
+      const popup = document.getElementById('qrPopup');
+      const button = document.getElementById('qrFloatButton');
+
+      const isOpen = popup.classList.toggle('open');
+
+      button.setAttribute('aria-expanded', isOpen);
+    }
+
+
+    function closeQrPopup() {
+      const popup = document.getElementById('qrPopup');
+      const button = document.getElementById('qrFloatButton');
+
+      popup.classList.remove('open');
+
+      button.setAttribute('aria-expanded', 'false');
+    }
+
+
+    /* Close popup with Escape */
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeQrPopup();
+      }
+    });
+
+
+    /* Close popup when clicking elsewhere */
+
+    document.addEventListener('click', function(event) {
+      const popup = document.getElementById('qrPopup');
+      const button = document.getElementById('qrFloatButton');
+
+      if (
+        popup.classList.contains('open') &&
+        !popup.contains(event.target) &&
+        !button.contains(event.target)
+      ) {
+        closeQrPopup();
+      }
+    });
+
   </script>
 
 </body>
