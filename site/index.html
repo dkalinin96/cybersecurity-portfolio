@@ -26,6 +26,10 @@
       color: inherit;
     }
 
+    /* =========================
+       STAGING PASSWORD GATE
+       ========================= */
+
     #gate {
       max-width: 430px;
       margin: 120px auto;
@@ -77,6 +81,10 @@
       display: none;
     }
 
+    /* =========================
+       NAVIGATION
+       ========================= */
+
     nav {
       position: sticky;
       top: 0;
@@ -108,11 +116,30 @@
       color: #61dafb;
     }
 
+    /* =========================
+       GLOBAL SECTIONS
+       ========================= */
+
     section {
       padding: 75px 8%;
       max-width: 1200px;
       margin: auto;
     }
+
+    h2.section-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: #a9b8ca;
+      max-width: 800px;
+      margin-bottom: 35px;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
 
     .hero {
       min-height: 75vh;
@@ -147,6 +174,10 @@
       margin-bottom: 30px;
     }
 
+    /* =========================
+       BUTTONS
+       ========================= */
+
     .buttons {
       display: flex;
       gap: 15px;
@@ -171,16 +202,9 @@
       transform: translateY(-2px);
     }
 
-    h2.section-title {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-    }
-
-    .section-description {
-      color: #a9b8ca;
-      max-width: 800px;
-      margin-bottom: 35px;
-    }
+    /* =========================
+       CARDS
+       ========================= */
 
     .grid {
       display: grid;
@@ -220,6 +244,10 @@
       font-size: 0.9rem;
     }
 
+    /* =========================
+       FEATURED WORK
+       ========================= */
+
     .featured {
       background: #0d1a2b;
       border-left: 4px solid #61dafb;
@@ -236,6 +264,10 @@
       color: #b4c1d1;
       margin-bottom: 16px;
     }
+
+    /* =========================
+       CERTIFICATIONS
+       ========================= */
 
     .cert-row {
       display: flex;
@@ -256,10 +288,61 @@
       white-space: nowrap;
     }
 
+    /* =========================
+       REPOSITORY
+       ========================= */
+
     .repo-card a {
       color: #61dafb;
       font-weight: bold;
     }
+
+    /* =========================
+       QR CODE
+       ========================= */
+
+    .qr-wrapper {
+      background: #0d1a2b;
+      border-left: 4px solid #61dafb;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .qr-wrapper h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .qr-wrapper p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: #b4c1d1;
+    }
+
+    .qr-wrapper img {
+      width: 220px;
+      max-width: 100%;
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 10px;
+      transition: 0.2s;
+    }
+
+    .qr-wrapper img:hover {
+      transform: scale(1.03);
+    }
+
+    .qr-note {
+      margin-top: 20px !important;
+      margin-bottom: 0 !important;
+      font-size: 0.9rem;
+      color: #8fa1b5 !important;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
 
     footer {
       text-align: center;
@@ -267,6 +350,10 @@
       border-top: 1px solid #21334d;
       color: #8fa1b5;
     }
+
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 700px) {
       nav ul {
@@ -281,14 +368,27 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .qr-wrapper {
+        padding: 30px 20px;
+      }
+
+      .qr-wrapper img {
+        width: 190px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- =========================
+       STAGING PASSWORD GATE
+       ========================= -->
+
   <div id="gate">
     <h1>Staging Preview</h1>
+
     <p>
       This is a work-in-progress version of my cybersecurity portfolio.
       Enter the preview password to continue.
@@ -306,8 +406,13 @@
     <p id="err">Incorrect password.</p>
   </div>
 
+  <!-- =========================
+       PORTFOLIO CONTENT
+       ========================= -->
 
   <div id="content" style="display:none;">
+
+    <!-- Navigation -->
 
     <nav>
       <h2>DK // CYBERSECURITY</h2>
@@ -318,9 +423,11 @@
         <li><a href="#work">Work</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#repository">Repository</a></li>
+        <li><a href="#qr-code">QR Code</a></li>
       </ul>
     </nav>
 
+    <!-- Hero -->
 
     <section class="hero">
 
@@ -336,9 +443,12 @@
 
       <div class="buttons">
 
-        <a class="button primary"
-           href="https://github.com/dkalinin96/cybersecurity-portfolio"
-           target="_blank">
+        <a
+          class="button primary"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           View GitHub
         </a>
 
@@ -350,6 +460,7 @@
 
     </section>
 
+    <!-- About -->
 
     <section id="about">
 
@@ -365,6 +476,7 @@
 
     </section>
 
+    <!-- Technical Focus -->
 
     <section id="skills">
 
@@ -379,10 +491,12 @@
 
         <div class="card">
           <h3>Network Security</h3>
+
           <p>
             Traffic analysis, network discovery, segmentation,
             protocols, and network-based attack concepts.
           </p>
+
           <span class="tag">Wireshark</span>
           <span class="tag">Nmap</span>
           <span class="tag">TCP/IP</span>
@@ -392,10 +506,12 @@
 
         <div class="card">
           <h3>System Security</h3>
+
           <p>
             Linux and Windows administration with a focus on access control,
             permissions, hardening, and secure configuration.
           </p>
+
           <span class="tag">Kali Linux</span>
           <span class="tag">Ubuntu</span>
           <span class="tag">Windows</span>
@@ -404,10 +520,12 @@
 
         <div class="card">
           <h3>Security Testing</h3>
+
           <p>
             Hands-on experience examining authentication weaknesses,
             password security, exposed services, and system configurations.
           </p>
+
           <span class="tag">Hashcat</span>
           <span class="tag">Hydra</span>
           <span class="tag">Nmap</span>
@@ -415,10 +533,12 @@
 
         <div class="card">
           <h3>Cryptography & PKI</h3>
+
           <p>
             Certificate authorities, TLS configuration, certificate
             validation, hashing, and public key infrastructure concepts.
           </p>
+
           <span class="tag">OpenSSL</span>
           <span class="tag">TLS</span>
           <span class="tag">PKI</span>
@@ -427,10 +547,12 @@
 
         <div class="card">
           <h3>Virtualization Security</h3>
+
           <p>
             Virtual machine administration, hypervisor security,
             snapshots, RBAC, and least-privilege design.
           </p>
+
           <span class="tag">Hyper-V</span>
           <span class="tag">RBAC</span>
           <span class="tag">Virtualization</span>
@@ -438,10 +560,12 @@
 
         <div class="card">
           <h3>Security Research</h3>
+
           <p>
             Incident analysis, vulnerability research, technical
             documentation, and communicating cybersecurity concepts clearly.
           </p>
+
           <span class="tag">Threat Research</span>
           <span class="tag">CVE Analysis</span>
           <span class="tag">Documentation</span>
@@ -451,6 +575,7 @@
 
     </section>
 
+    <!-- Featured Work -->
 
     <section id="work">
 
@@ -481,9 +606,12 @@
 
         <br><br>
 
-        <a class="button"
-           href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/tls-audits"
-           target="_blank">
+        <a
+          class="button"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/tls-audits"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           View TLS Audit Reports
         </a>
 
@@ -491,6 +619,7 @@
 
     </section>
 
+    <!-- Certifications -->
 
     <section id="certifications">
 
@@ -504,36 +633,47 @@
       <div class="card">
 
         <div class="cert-row">
+
           <div>
             <strong>CompTIA IT Fundamentals+ (ITF+)</strong>
             <p>Completed September 2024</p>
           </div>
+
           <span class="status">COMPLETED</span>
+
         </div>
 
         <div class="cert-row">
+
           <div>
             <strong>CompTIA A+ Core 1 Certification Exam</strong>
             <p>Completed June 2024</p>
           </div>
+
           <span class="status">COMPLETED</span>
+
         </div>
 
         <div class="cert-row">
+
           <div>
             <strong>Continuous Technical Development</strong>
+
             <p>
               Maintaining a growing portfolio of cybersecurity labs,
               research, projects, and technical documentation.
             </p>
           </div>
+
           <span class="status">ACTIVE</span>
+
         </div>
 
       </div>
 
     </section>
 
+    <!-- Repository -->
 
     <section id="repository">
 
@@ -547,55 +687,127 @@
       <div class="grid">
 
         <div class="card repo-card">
+
           <h3>Research & Writeups</h3>
-          <p>Incident analysis, security research, and technical explanations.</p>
+
+          <p>
+            Incident analysis, security research, and technical explanations.
+          </p>
+
           <br>
-          <a href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/research-and-writeups"
-             target="_blank">
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/research-and-writeups"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Open Folder →
           </a>
+
         </div>
 
         <div class="card repo-card">
+
           <h3>SOC Tools</h3>
-          <p>Security operations projects, detection work, and technical exercises.</p>
+
+          <p>
+            Security operations projects, detection work, and technical exercises.
+          </p>
+
           <br>
-          <a href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/soc-tools"
-             target="_blank">
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/soc-tools"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Open Folder →
           </a>
+
         </div>
 
         <div class="card repo-card">
+
           <h3>GRC</h3>
+
           <p>
             Governance, risk, compliance, access control,
             and security framework work.
           </p>
+
           <br>
-          <a href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/grc"
-             target="_blank">
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/grc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Open Folder →
           </a>
+
         </div>
 
         <div class="card repo-card">
+
           <h3>Certifications & Skills</h3>
+
           <p>
             A living tracker of certifications, labs, tools,
             and technical development.
           </p>
+
           <br>
-          <a href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/certifications-and-skills/tracker.md"
-             target="_blank">
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/certifications-and-skills/tracker.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             View Tracker →
           </a>
+
         </div>
 
       </div>
 
     </section>
 
+    <!-- QR Code -->
+
+    <section id="qr-code">
+
+      <div class="qr-wrapper">
+
+        <h2>Scan to View My Portfolio</h2>
+
+        <p>
+          Scan the QR code below to open the public version of my
+          cybersecurity portfolio on any mobile device.
+        </p>
+
+        <a
+          href="https://dkalinin96.github.io/cybersecurity-portfolio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Dennis Kalinin cybersecurity portfolio"
+        >
+
+          <img
+            src="assets/qr-code.png"
+            alt="QR code linking to Dennis Kalinin cybersecurity portfolio"
+          >
+
+        </a>
+
+        <p class="qr-note">
+          Scan or click the QR code to open the production portfolio.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- Footer -->
 
     <footer>
       <p>Dennis Kalinin • Cybersecurity Portfolio</p>
@@ -604,6 +816,9 @@
 
   </div>
 
+  <!-- =========================
+       STAGING PASSWORD SCRIPT
+       ========================= -->
 
   <script>
     function checkPw() {
