@@ -1,76 +1,63 @@
 # Dennis Kalinin — Cybersecurity Portfolio
 
-## About Me
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-236192?style=for-the-badge&logo=githubpages&logoColor=white)](https://dkalinin96.github.io/cybersecurity-portfolio/)
+![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Portfolio-6E263D?style=for-the-badge)
+![Linux](https://img.shields.io/badge/Linux-Administration-000000?style=for-the-badge&logo=linux&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Self--Hosted-236192?style=for-the-badge&logo=docker&logoColor=white)
+![Python](https://img.shields.io/badge/Python-Scripting-A2AAAD?style=for-the-badge&logo=python&logoColor=black)
 
-I am a cybersecurity professional developing hands-on experience across networking, system administration, security operations, virtualization, cryptography, and defensive security.
+Cybersecurity professional developing hands-on experience across enterprise security, networking, system hardening, threat analysis, infrastructure, PKI/TLS, IAM, and security operations.
 
-My goal is to continue building practical technical skills while developing a portfolio that demonstrates not only what I know, but what I have actually built and tested.
-
----
-
-## Goals
-
-- Continue developing hands-on cybersecurity experience in real-world environments
-- Strengthen my skills in security operations, threat detection, networking, and system hardening
-- Build a professional portfolio of labs, research, presentations, and technical projects
-- Continue expanding my certifications and technical knowledge
-- Grow into a cybersecurity role where I can contribute to protecting enterprise systems and data
+**M.S. Cybersecurity Investigations & Intelligence**
+**B.S. Cybersecurity & Digital Forensics**
 
 ---
 
-## Skills at a Glance
+## Featured Work
 
-| Category | Tools / Concepts |
-|---|---|
-| Networking & Security Fundamentals | TCP/IP, DNS, DHCP, VPNs, firewalls, network segmentation, Wireshark |
-| Linux & Windows Administration | Kali Linux, Ubuntu, Windows administration, permissions, account security, system hardening |
-| Security Operations | Log analysis, threat detection, vulnerability analysis, incident response concepts |
-| Virtualization | Hyper-V, virtual machines, snapshots, RBAC, hypervisor security |
-| Cryptography & PKI | TLS, certificates, certificate authorities, OpenSSL, hashing |
-| Offensive Security Fundamentals | Nmap, Hydra, Hashcat, password security testing |
-| Governance, Risk & Compliance | NIST CSF, security policies, least privilege, access control concepts |
-| Security Research | Vulnerability research, incident analysis, technical documentation |
+### Scattered Spider Threat Intelligence Investigation
+Graduate intelligence-style investigation covering attribution, social engineering, identity compromise, MITRE ATT&CK mapping, major incidents, law-enforcement activity, and defensive recommendations.
 
----
+[View Master's Capstone](research-and-writeups/scattered-spider-masters-capstone.pdf)
 
-## What's In This Repository
+### Cyber Threat Analysis in the Financial Sector
+Undergraduate capstone analyzing SQL injection, phishing, ransomware, real-world incidents, and layered defensive controls within financial environments.
 
-| Folder | What You'll Find |
-|---|---|
-| [soc-tools](soc-tools/) | Security operations tools, detection content, and SOC-related projects |
-| [malware-analysis](malware-analysis/) | Malware research and analysis writeups |
-| [grc](grc/) | Governance, risk, compliance, policies, and security framework work |
-| [research-and-writeups](research-and-writeups/) | Cybersecurity research, incident analysis, and technical writeups |
-| [presentations](presentations/) | Cybersecurity presentations and supporting material |
-| [templates](templates/) | Reusable cybersecurity documentation, checklists, and report templates |
-| [certifications-and-skills](certifications-and-skills/) | Certification progress and hands-on skills tracker |
-| [tls-audits](tls-audits/) | TLS and certificate security audit projects |
-| [site](site/) | Source files for my cybersecurity portfolio website |
+[View Undergraduate Capstone](research-and-writeups/financial-sector-undergraduate-capstone.pdf)
+
+### 80 TB Cybersecurity Home Lab
+Self-hosted infrastructure built on a UGREEN NASync DXP8800 Plus using ZimaOS, TrueNAS, Docker, Pi-hole, Plex/Jellyfin, Immich, and Tailscale.
+
+[View Home Lab Documentation](research-and-writeups/homelab.md)
+
+### TLS & Certificate Security Audits
+Professional TLS assessments using SSL Labs and OpenSSL to evaluate certificate trust, protocol support, cipher configuration, and certificate-chain deployment.
+
+[View TLS Audit Library](tls-audits/)
 
 ---
 
-## Website
+## Technical Focus
 
-### [Visit My Cybersecurity Portfolio](https://dkalinin96.github.io/cybersecurity-portfolio/)
+`Network Security` • `Linux` • `Windows` • `Docker` • `Nmap` • `Wireshark` • `Palo Alto` • `Splunk` • `PKI/TLS` • `IAM` • `Python` • `PowerShell` • `Bash`
+
+---
+
+## Portfolio Navigation
+
+- [Live Portfolio Website](https://dkalinin96.github.io/cybersecurity-portfolio/)
+- [Research & Writeups](research-and-writeups/)
+- [TLS & Certificate Audits](tls-audits/)
+- [Certifications & Skills](certifications-and-skills/)
+
+---
+
+## Scan to View Portfolio
 
 <a href="https://dkalinin96.github.io/cybersecurity-portfolio/">
-  <img
-    src="site/assets/qr-code.png"
-    alt="QR code linking to Dennis Kalinin's cybersecurity portfolio website"
-    width="120"
-  >
+  <img src="site/assets/qr-code.png" width="120" alt="QR code linking to Dennis Kalinin's cybersecurity portfolio">
 </a>
 
-Scan the QR code above to open the public portfolio on a mobile device.
-
 ---
 
-## Contact
-
-**GitHub:** [dkalinin96](https://github.com/dkalinin96)
-
-**Email:** kalinindennis96@gmail.com
-
----
-
-This portfolio is a living project and will continue to grow as I complete new cybersecurity labs, research, certifications, and technical projects.
+*Portfolio projects are continuously updated as additional cybersecurity research, labs, and technical work are completed.*
