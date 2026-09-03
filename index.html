@@ -26,6 +26,65 @@
       color: inherit;
     }
 
+    /* =========================
+       STAGING PASSWORD GATE
+       ========================= */
+
+    #gate {
+      max-width: 430px;
+      margin: 120px auto;
+      padding: 35px;
+      text-align: center;
+      background: #0d1a2b;
+      border: 1px solid #20344f;
+      border-radius: 10px;
+    }
+
+    #gate h1 {
+      color: #61dafb;
+      margin-bottom: 15px;
+    }
+
+    #gate p {
+      color: #b4c1d1;
+      margin-bottom: 20px;
+    }
+
+    #gate input {
+      width: 100%;
+      padding: 12px;
+      background: #07111f;
+      border: 1px solid #294462;
+      border-radius: 6px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    #gate button {
+      width: 100%;
+      padding: 12px;
+      background: #61dafb;
+      color: #07111f;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #gate button:hover {
+      opacity: 0.9;
+    }
+
+    #err {
+      color: #ff7373 !important;
+      margin-top: 15px;
+      display: none;
+    }
+
+    /* =========================
+       NAVIGATION
+       ========================= */
+
     nav {
       position: sticky;
       top: 0;
@@ -53,19 +112,34 @@
       justify-content: flex-end;
     }
 
-    nav a {
-      font-size: 0.98rem;
-    }
-
     nav a:hover {
       color: #61dafb;
     }
+
+    /* =========================
+       GLOBAL SECTIONS
+       ========================= */
 
     section {
       padding: 75px 8%;
       max-width: 1200px;
       margin: auto;
     }
+
+    h2.section-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: #a9b8ca;
+      max-width: 800px;
+      margin-bottom: 35px;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
 
     .hero {
       min-height: 75vh;
@@ -100,6 +174,10 @@
       margin-bottom: 30px;
     }
 
+    /* =========================
+       BUTTONS
+       ========================= */
+
     .buttons {
       display: flex;
       gap: 15px;
@@ -124,16 +202,9 @@
       transform: translateY(-2px);
     }
 
-    h2.section-title {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-    }
-
-    .section-description {
-      color: #a9b8ca;
-      max-width: 800px;
-      margin-bottom: 35px;
-    }
+    /* =========================
+       CARDS
+       ========================= */
 
     .grid {
       display: grid;
@@ -173,6 +244,10 @@
       font-size: 0.9rem;
     }
 
+    /* =========================
+       FEATURED WORK
+       ========================= */
+
     .featured {
       background: #0d1a2b;
       border-left: 4px solid #61dafb;
@@ -189,6 +264,10 @@
       color: #b4c1d1;
       margin-bottom: 16px;
     }
+
+    /* =========================
+       CERTIFICATIONS
+       ========================= */
 
     .cert-row {
       display: flex;
@@ -209,10 +288,212 @@
       white-space: nowrap;
     }
 
+    /* =========================
+       REPOSITORY
+       ========================= */
+
     .repo-card a {
       color: #61dafb;
       font-weight: bold;
     }
+
+    /* =========================
+       FLOATING QR BUTTON
+       ========================= */
+
+    .qr-floating-container {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .qr-float-button {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 2px solid #61dafb;
+      background: #61dafb;
+      color: #07111f;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(97, 218, 251, 0.18);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .qr-float-button:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.5),
+        0 0 28px rgba(97, 218, 251, 0.3);
+    }
+
+    /* Hover message */
+
+    .qr-tooltip {
+      position: absolute;
+      right: 74px;
+      bottom: 13px;
+      background: #0d1a2b;
+      color: #ffffff;
+      border: 1px solid #294462;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(8px);
+      transition: all 0.2s ease;
+      pointer-events: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .qr-tooltip::after {
+      content: "";
+      position: absolute;
+      right: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 7px 0 7px 7px;
+      border-style: solid;
+      border-color: transparent transparent transparent #294462;
+    }
+
+    .qr-float-button:hover .qr-tooltip,
+    .qr-float-button:focus .qr-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    /* QR popup box */
+
+    .qr-popup {
+      width: 320px;
+      position: absolute;
+      right: 0;
+      bottom: 78px;
+      background: #0d1a2b;
+      border: 1px solid #294462;
+      border-top: 3px solid #61dafb;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px) scale(0.97);
+      transform-origin: bottom right;
+
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .qr-popup.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .qr-popup-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: #9fb0c5;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .qr-popup-close:hover {
+      background: #14263d;
+      color: #61dafb;
+    }
+
+    .qr-popup-label {
+      color: #61dafb;
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1.6px;
+      margin-bottom: 5px;
+    }
+
+    .qr-popup h3 {
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .qr-popup-description {
+      color: #aebed0;
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .qr-image-link {
+      display: inline-block;
+    }
+
+    .qr-popup img {
+      display: block;
+      width: 205px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 10px;
+      background: #ffffff;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .qr-popup img:hover {
+      transform: scale(1.025);
+    }
+
+    .qr-popup-note {
+      color: #8fa1b5;
+      font-size: 0.82rem;
+      margin-top: 14px;
+      margin-bottom: 18px;
+    }
+
+    .qr-repo-button {
+      display: block;
+      width: 100%;
+      padding: 11px 14px;
+      background: #61dafb;
+      color: #07111f;
+      border-radius: 7px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .qr-repo-button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
 
     footer {
       text-align: center;
@@ -221,15 +502,9 @@
       color: #8fa1b5;
     }
 
-    @media (max-width: 900px) {
-      nav {
-        padding: 16px 5%;
-      }
-
-      nav ul {
-        gap: 12px;
-      }
-    }
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 700px) {
       nav ul {
@@ -240,13 +515,31 @@
         padding: 60px 6%;
       }
 
-      .hero {
-        min-height: 70vh;
-      }
-
       .cert-row {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .qr-floating-container {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .qr-float-button {
+        width: 58px;
+        height: 58px;
+      }
+
+      .qr-popup {
+        position: fixed;
+        right: 16px;
+        bottom: 88px;
+        width: calc(100vw - 32px);
+        max-width: 340px;
+      }
+
+      .qr-tooltip {
+        display: none;
       }
     }
   </style>
@@ -254,321 +547,509 @@
 
 <body>
 
-  <nav>
-    <h2>DK // CYBERSECURITY</h2>
+  <!-- =========================
+       PORTFOLIO CONTENT
+       ========================= -->
 
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#repository">Repository</a></li>
-    </ul>
-  </nav>
+  <div id="content">
 
+    <!-- Navigation -->
 
-  <section class="hero">
+    <nav>
+      <h2>DK // CYBERSECURITY</h2>
 
-    <p class="eyebrow">CYBERSECURITY PORTFOLIO</p>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#repository">Repository</a></li>
+      </ul>
+    </nav>
 
-    <h1>
-      Dennis <span>Kalinin</span>
-    </h1>
+    <!-- Hero -->
 
-    <p>
-      Building practical cybersecurity experience across security operations,
-      network defense, system hardening, virtualization, cryptography,
-      vulnerability analysis, and technical research.
-    </p>
+    <section class="hero">
 
-    <div class="buttons">
+      <p class="eyebrow">CYBERSECURITY PORTFOLIO</p>
 
-      <a class="button primary"
-         href="https://github.com/dkalinin96/cybersecurity-portfolio"
-         target="_blank">
-         View GitHub
-      </a>
+      <h1>Dennis <span>Kalinin</span></h1>
 
-      <a class="button"
-         href="#work">
-         Explore My Work
-      </a>
+      <p>
+        Building practical cybersecurity experience across security operations,
+        network defense, system hardening, virtualization, cryptography,
+        vulnerability analysis, and technical research.
+      </p>
 
-    </div>
+      <div class="buttons">
 
-  </section>
+        <a
+          class="button primary"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View GitHub
+        </a>
 
+        <a class="button" href="#work">
+          Explore My Work
+        </a>
 
-  <section id="about">
-
-    <h2 class="section-title">About Me</h2>
-
-    <p class="section-description">
-      I am developing hands-on cybersecurity experience with an emphasis on
-      understanding how systems operate, how they are attacked, and how they
-      can be defended. My goal is to continue strengthening my technical
-      foundation while building work that demonstrates practical ability,
-      documentation skills, and security-focused problem solving.
-    </p>
-
-  </section>
-
-
-  <section id="skills">
-
-    <h2 class="section-title">Technical Focus</h2>
-
-    <p class="section-description">
-      My portfolio combines administration, networking, defensive security,
-      security testing, and cybersecurity research.
-    </p>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>Network Security</h3>
-        <p>
-          Traffic analysis, network discovery, segmentation,
-          protocols, and network-based attack concepts.
-        </p>
-
-        <span class="tag">Wireshark</span>
-        <span class="tag">Nmap</span>
-        <span class="tag">TCP/IP</span>
-        <span class="tag">DNS</span>
-        <span class="tag">DHCP</span>
       </div>
 
+    </section>
 
-      <div class="card">
-        <h3>System Security</h3>
-        <p>
-          Linux and Windows administration with a focus on
-          access control, permissions, hardening, and secure configuration.
-        </p>
+    <!-- About -->
 
-        <span class="tag">Kali Linux</span>
-        <span class="tag">Ubuntu</span>
-        <span class="tag">Windows</span>
-        <span class="tag">AppArmor</span>
+    <section id="about">
+
+      <h2 class="section-title">About Me</h2>
+
+      <p class="section-description">
+        I am developing hands-on cybersecurity experience with an emphasis on
+        understanding how systems operate, how they are attacked, and how they
+        can be defended. My goal is to continue strengthening my technical
+        foundation while building work that demonstrates practical ability,
+        documentation skills, and security-focused problem solving.
+      </p>
+
+    </section>
+
+    <!-- Technical Focus -->
+
+    <section id="skills">
+
+      <h2 class="section-title">Technical Focus</h2>
+
+      <p class="section-description">
+        My portfolio combines administration, networking, defensive security,
+        security testing, and cybersecurity research.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Network Security</h3>
+
+          <p>
+            Traffic analysis, network discovery, segmentation,
+            protocols, and network-based attack concepts.
+          </p>
+
+          <span class="tag">Wireshark</span>
+          <span class="tag">Nmap</span>
+          <span class="tag">TCP/IP</span>
+          <span class="tag">DNS</span>
+          <span class="tag">DHCP</span>
+        </div>
+
+        <div class="card">
+          <h3>System Security</h3>
+
+          <p>
+            Linux and Windows administration with a focus on access control,
+            permissions, hardening, and secure configuration.
+          </p>
+
+          <span class="tag">Kali Linux</span>
+          <span class="tag">Ubuntu</span>
+          <span class="tag">Windows</span>
+          <span class="tag">AppArmor</span>
+        </div>
+
+        <div class="card">
+          <h3>Security Testing</h3>
+
+          <p>
+            Hands-on experience examining authentication weaknesses,
+            password security, exposed services, and system configurations.
+          </p>
+
+          <span class="tag">Hashcat</span>
+          <span class="tag">Hydra</span>
+          <span class="tag">Nmap</span>
+        </div>
+
+        <div class="card">
+          <h3>Cryptography & PKI</h3>
+
+          <p>
+            Certificate authorities, TLS configuration, certificate
+            validation, hashing, and public key infrastructure concepts.
+          </p>
+
+          <span class="tag">OpenSSL</span>
+          <span class="tag">TLS</span>
+          <span class="tag">PKI</span>
+          <span class="tag">Certificates</span>
+        </div>
+
+        <div class="card">
+          <h3>Virtualization Security</h3>
+
+          <p>
+            Virtual machine administration, hypervisor security,
+            snapshots, RBAC, and least-privilege design.
+          </p>
+
+          <span class="tag">Hyper-V</span>
+          <span class="tag">RBAC</span>
+          <span class="tag">Virtualization</span>
+        </div>
+
+        <div class="card">
+          <h3>Security Research</h3>
+
+          <p>
+            Incident analysis, vulnerability research, technical
+            documentation, and communicating cybersecurity concepts clearly.
+          </p>
+
+          <span class="tag">Threat Research</span>
+          <span class="tag">CVE Analysis</span>
+          <span class="tag">Documentation</span>
+        </div>
+
       </div>
 
+    </section>
 
-      <div class="card">
-        <h3>Security Testing</h3>
+    <!-- Featured Work -->
+
+    <section id="work">
+
+      <h2 class="section-title">Featured Work</h2>
+
+      <p class="section-description">
+        This portfolio is built around hands-on projects rather than
+        simply listing technologies.
+      </p>
+
+      <div class="featured">
+
+        <h3>TLS & Certificate Security Analysis</h3>
+
         <p>
-          Hands-on experience examining authentication weaknesses,
-          password security, exposed services, and system configurations.
-        </p>
-
-        <span class="tag">Hashcat</span>
-        <span class="tag">Hydra</span>
-        <span class="tag">Nmap</span>
-      </div>
-
-
-      <div class="card">
-        <h3>Cryptography & PKI</h3>
-        <p>
-          Certificate authorities, TLS configuration, certificate
-          validation, hashing, and public key infrastructure concepts.
+          Hands-on work examining certificate authorities, certificate
+          signing requests, TLS certificates, cipher configuration, and
+          weaknesses caused by outdated or insecure cryptographic settings.
+          This work combines technical testing with an explanation of the
+          real-world security impact and the configuration changes needed
+          to remediate the issue.
         </p>
 
         <span class="tag">OpenSSL</span>
         <span class="tag">TLS</span>
         <span class="tag">PKI</span>
-        <span class="tag">Certificates</span>
+        <span class="tag">Certificate Analysis</span>
+
+        <br><br>
+
+        <a
+          class="button"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/tls-audits"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View TLS Audit Reports
+        </a>
+
       </div>
 
+    </section>
 
-      <div class="card">
-        <h3>Virtualization Security</h3>
-        <p>
-          Virtual machine administration, hypervisor security,
-          snapshots, RBAC, and least-privilege design.
-        </p>
+    <!-- Certifications -->
 
-        <span class="tag">Hyper-V</span>
-        <span class="tag">RBAC</span>
-        <span class="tag">Virtualization</span>
-      </div>
+    <section id="certifications">
 
+      <h2 class="section-title">Certifications & Development</h2>
 
-      <div class="card">
-        <h3>Security Research</h3>
-        <p>
-          Incident analysis, vulnerability research, technical
-          documentation, and communicating cybersecurity concepts clearly.
-        </p>
-
-        <span class="tag">Threat Research</span>
-        <span class="tag">CVE Analysis</span>
-        <span class="tag">Documentation</span>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section id="work">
-
-    <h2 class="section-title">Featured Work</h2>
-
-    <p class="section-description">
-      This portfolio is built around hands-on projects rather than
-      simply listing technologies.
-    </p>
-
-    <div class="featured">
-
-      <h3>TLS & Certificate Security Analysis</h3>
-
-      <p>
-        Hands-on work examining certificate authorities, certificate
-        signing requests, TLS certificates, cipher configuration, and
-        weaknesses caused by outdated or insecure cryptographic settings.
-        This work combines technical testing with an explanation of the
-        real-world security impact and the configuration changes needed
-        to remediate the issue.
+      <p class="section-description">
+        Certifications are one part of my development. I pair them with
+        practical labs and continued hands-on learning.
       </p>
 
-      <span class="tag">OpenSSL</span>
-      <span class="tag">TLS</span>
-      <span class="tag">PKI</span>
-      <span class="tag">Certificate Analysis</span>
+      <div class="card">
 
-      <br><br>
+        <div class="cert-row">
 
-      <a class="button"
-         href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/tls-audits"
-         target="_blank">
-         View TLS Audit Reports
-      </a>
+          <div>
+            <strong>CompTIA IT Fundamentals+ (ITF+)</strong>
+            <p>Completed September 2024</p>
+          </div>
 
-    </div>
+          <span class="status">COMPLETED</span>
 
-  </section>
-
-
-  <section id="certifications">
-
-    <h2 class="section-title">Certifications & Development</h2>
-
-    <p class="section-description">
-      Certifications are one part of my development. I pair them with
-      practical labs and continued hands-on learning.
-    </p>
-
-    <div class="card">
-
-      <div class="cert-row">
-        <div>
-          <strong>CompTIA IT Fundamentals+ (ITF+)</strong>
-          <p>Completed September 2024</p>
         </div>
 
-        <span class="status">COMPLETED</span>
-      </div>
+        <div class="cert-row">
 
+          <div>
+            <strong>CompTIA A+ Core 1 Certification Exam</strong>
+            <p>Completed June 2024</p>
+          </div>
 
-      <div class="cert-row">
-        <div>
-          <strong>CompTIA A+ Core 1 Certification Exam</strong>
-          <p>Completed June 2024</p>
+          <span class="status">COMPLETED</span>
+
         </div>
 
-        <span class="status">COMPLETED</span>
+        <div class="cert-row">
+
+          <div>
+            <strong>Continuous Technical Development</strong>
+
+            <p>
+              Maintaining a growing portfolio of cybersecurity labs,
+              research, projects, and technical documentation.
+            </p>
+          </div>
+
+          <span class="status">ACTIVE</span>
+
+        </div>
+
       </div>
 
+    </section>
 
-      <div class="cert-row">
-        <div>
-          <strong>Continuous Technical Development</strong>
+    <!-- Repository -->
+
+    <section id="repository">
+
+      <h2 class="section-title">Explore the Repository</h2>
+
+      <p class="section-description">
+        The GitHub repository behind this site contains the evidence and
+        documentation supporting the skills shown above.
+      </p>
+
+      <div class="grid">
+
+        <div class="card repo-card">
+
+          <h3>Research & Writeups</h3>
+
           <p>
-            Maintaining a growing portfolio of cybersecurity labs,
-            research, projects, and technical documentation.
+            Incident analysis, security research, and technical explanations.
           </p>
+
+          <br>
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/research-and-writeups"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Folder →
+          </a>
+
         </div>
 
-        <span class="status">ACTIVE</span>
+        <div class="card repo-card">
+
+          <h3>SOC Tools</h3>
+
+          <p>
+            Security operations projects, detection work, and technical exercises.
+          </p>
+
+          <br>
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/soc-tools"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Folder →
+          </a>
+
+        </div>
+
+        <div class="card repo-card">
+
+          <h3>GRC</h3>
+
+          <p>
+            Governance, risk, compliance, access control,
+            and security framework work.
+          </p>
+
+          <br>
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/grc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Folder →
+          </a>
+
+        </div>
+
+        <div class="card repo-card">
+
+          <h3>Certifications & Skills</h3>
+
+          <p>
+            A living tracker of certifications, labs, tools,
+            and technical development.
+          </p>
+
+          <br>
+
+          <a
+            href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/certifications-and-skills/tracker.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Tracker →
+          </a>
+
+        </div>
+
       </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+      <p>Dennis Kalinin • Cybersecurity Portfolio</p>
+      <p>Built as a living record of hands-on cybersecurity development.</p>
+    </footer>
+
+    <!-- =========================
+         FLOATING GITHUB QR
+         ========================= -->
+
+    <div class="qr-floating-container">
+
+      <div
+        id="qrPopup"
+        class="qr-popup"
+        role="dialog"
+        aria-labelledby="qrPopupTitle"
+      >
+
+        <button
+          class="qr-popup-close"
+          onclick="closeQrPopup()"
+          aria-label="Close QR code"
+        >
+          ×
+        </button>
+
+        <p class="qr-popup-label">GITHUB REPOSITORY</p>
+
+        <h3 id="qrPopupTitle">To My Repository!</h3>
+
+        <p class="qr-popup-description">
+          Scan this QR code to explore the projects, reports,
+          labs, and technical evidence behind this portfolio.
+        </p>
+
+        <a
+          class="qr-image-link"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <img
+            src="assets/github-qr.png"
+            alt="QR code linking to Dennis Kalinin's GitHub cybersecurity repository"
+          >
+
+        </a>
+
+        <p class="qr-popup-note">
+          Scan the code or use the button below.
+        </p>
+
+        <a
+          class="qr-repo-button"
+          href="https://github.com/dkalinin96/cybersecurity-portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open GitHub Repository
+        </a>
+
+      </div>
+
+      <button
+        id="qrFloatButton"
+        class="qr-float-button"
+        onclick="toggleQrPopup()"
+        aria-label="Show GitHub repository QR code"
+        aria-expanded="false"
+      >
+        QR
+
+        <span class="qr-tooltip">
+          QR code here!
+        </span>
+
+      </button>
 
     </div>
 
-  </section>
+  </div>
+
+  <!-- =========================
+       SCRIPTS
+       ========================= -->
+
+  <script>
+
+    /* Floating QR popup */
+
+    function toggleQrPopup() {
+      const popup = document.getElementById('qrPopup');
+      const button = document.getElementById('qrFloatButton');
+
+      const isOpen = popup.classList.toggle('open');
+
+      button.setAttribute('aria-expanded', isOpen);
+    }
 
 
-  <section id="repository">
+    function closeQrPopup() {
+      const popup = document.getElementById('qrPopup');
+      const button = document.getElementById('qrFloatButton');
 
-    <h2 class="section-title">Explore the Repository</h2>
+      popup.classList.remove('open');
 
-    <p class="section-description">
-      The GitHub repository behind this site contains the evidence and
-      documentation supporting the skills shown above.
-    </p>
-
-    <div class="grid">
-
-      <div class="card repo-card">
-        <h3>Research & Writeups</h3>
-        <p>Incident analysis, security research, and technical explanations.</p>
-        <br>
-        <a href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/research-and-writeups"
-           target="_blank">
-           Open Folder →
-        </a>
-      </div>
+      button.setAttribute('aria-expanded', 'false');
+    }
 
 
-      <div class="card repo-card">
-        <h3>SOC Tools</h3>
-        <p>Security operations projects, detection work, and technical exercises.</p>
-        <br>
-        <a href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/soc-tools"
-           target="_blank">
-           Open Folder →
-        </a>
-      </div>
+    /* Close popup with Escape */
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeQrPopup();
+      }
+    });
 
 
-      <div class="card repo-card">
-        <h3>GRC</h3>
-        <p>Governance, risk, compliance, access control, and security framework work.</p>
-        <br>
-        <a href="https://github.com/dkalinin96/cybersecurity-portfolio/tree/main/grc"
-           target="_blank">
-           Open Folder →
-        </a>
-      </div>
+    /* Close popup when clicking elsewhere */
 
+    document.addEventListener('click', function(event) {
+      const popup = document.getElementById('qrPopup');
+      const button = document.getElementById('qrFloatButton');
 
-      <div class="card repo-card">
-        <h3>Certifications & Skills</h3>
-        <p>A living tracker of certifications, labs, tools, and technical development.</p>
-        <br>
-        <a href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/certifications-and-skills/tracker.md"
-           target="_blank">
-           View Tracker →
-        </a>
-      </div>
+      if (
+        popup.classList.contains('open') &&
+        !popup.contains(event.target) &&
+        !button.contains(event.target)
+      ) {
+        closeQrPopup();
+      }
+    });
 
-    </div>
-
-  </section>
-
-
-  <footer>
-
-    <p>
-      Dennis Kalinin • Cybersecurity Portfolio
-    </p>
-
-    <p>
-      Built as a living record of hands-on cybersecurity development.
-    </p>
-
-  </footer>
+  </script>
 
 </body>
 </html>
