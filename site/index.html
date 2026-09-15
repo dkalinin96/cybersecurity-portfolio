@@ -1909,6 +1909,162 @@
 
 
     /* =========================================================
+       REPOSITORY - LATEST ADDITIONS
+       ========================================================= */
+
+    .repository-latest {
+      margin-top: 42px;
+    }
+
+    .repository-latest-header {
+      margin-bottom: 20px;
+    }
+
+    .repository-latest-label {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #b75b75;
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.72rem;
+      font-weight: 700;
+
+      letter-spacing: 0.18em;
+    }
+
+    .repository-latest-header h3 {
+      margin: 0;
+
+      color: var(--white);
+
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .repository-latest-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 16px;
+    }
+
+    .repository-latest-card {
+      display: flex;
+
+      min-height: 220px;
+
+      flex-direction: column;
+
+      padding: 24px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius-small);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(16, 24, 33, 0.92),
+          rgba(8, 13, 18, 0.96)
+        );
+
+      color: inherit;
+
+      text-decoration: none;
+
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .repository-latest-card:hover {
+      transform: translateY(-5px);
+
+      border-color:
+        rgba(145, 55, 80, 0.55);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 32, 43, 0.96),
+          rgba(10, 15, 21, 0.98)
+        );
+
+      box-shadow:
+        0 18px 42px
+        rgba(110, 38, 61, 0.12);
+    }
+
+    .repository-latest-number {
+      margin-bottom: 26px;
+
+      color: #b75b75;
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.78rem;
+      font-weight: 700;
+
+      letter-spacing: 0.12em;
+    }
+
+    .repository-latest-card h4 {
+      margin: 0 0 10px;
+
+      color: var(--white);
+
+      font-size: 1.04rem;
+      line-height: 1.4;
+    }
+
+    .repository-latest-card p {
+      margin: 0 0 24px;
+
+      color: var(--muted);
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.78rem;
+    }
+
+    .repository-latest-link {
+      margin-top: auto;
+
+      color: var(--blue-bright);
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .repository-latest-card:hover
+    .repository-latest-link {
+      color: var(--white);
+    }
+
+
+    /* =========================================================
        CONTACT CTA
        ========================================================= */
 
@@ -2422,6 +2578,10 @@
 
       .repo-command {
         grid-column: 1;
+      }
+
+      .repository-latest-grid {
+        grid-template-columns: 1fr;
       }
 
       .contact-card {
@@ -3446,6 +3606,7 @@
                 <span class="tag">Snort</span>
                 <span class="tag">Suricata</span>
               </div>
+
               <a
                 class="project-link"
                 href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/research-and-writeups/homelab.md"
@@ -3454,7 +3615,6 @@
               >
                 VIEW HOME LAB BUILD →
               </a>
-
 
             </article>
 
@@ -4391,6 +4551,116 @@
 
           </div>
 
+
+          <!-- Latest Additions -->
+
+          <div class="repository-latest reveal">
+
+            <div class="repository-latest-header">
+
+              <span class="repository-latest-label">
+                LATEST ADDITIONS
+              </span>
+
+              <h3>
+                Recent hands-on lab reports.
+              </h3>
+
+            </div>
+
+
+            <div class="repository-latest-grid">
+
+
+              <a
+                class="repository-latest-card"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/soc-tools/bootcamp-labs/week6-days1-3-vulnerability-assessment-digital-forensics.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <span class="repository-latest-number">
+                  01
+                </span>
+
+                <h4>
+                  Vulnerability Assessment
+                  <br>
+                  & Digital Forensics
+                </h4>
+
+                <p>
+                  Week 6 - Days 1-3
+                </p>
+
+                <span class="repository-latest-link">
+                  View report →
+                </span>
+
+              </a>
+
+
+              <a
+                class="repository-latest-card"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/soc-tools/bootcamp-labs/week6-days4-5-threat-hunting-detection-engineering.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <span class="repository-latest-number">
+                  02
+                </span>
+
+                <h4>
+                  Threat Hunting
+                  <br>
+                  & Detection Engineering
+                </h4>
+
+                <p>
+                  Week 6 - Days 4-5
+                </p>
+
+                <span class="repository-latest-link">
+                  View report →
+                </span>
+
+              </a>
+
+
+              <a
+                class="repository-latest-card"
+                href="https://github.com/dkalinin96/cybersecurity-portfolio/blob/main/soc-tools/bootcamp-labs/week7-days1-2-siem-triage-incident-response.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <span class="repository-latest-number">
+                  03
+                </span>
+
+                <h4>
+                  SIEM Triage
+                  <br>
+                  & Incident Response
+                </h4>
+
+                <p>
+                  Week 7 - Days 1-2
+                </p>
+
+                <span class="repository-latest-link">
+                  View report →
+                </span>
+
+              </a>
+
+
+            </div>
+
+          </div>
+
+
         </div>
 
       </section>
@@ -4985,8 +5255,6 @@
           .getFullYear();
 
 
-
-
     /* =========================================================
        PRODUCTION INITIALIZATION
        ========================================================= */
@@ -4999,7 +5267,7 @@
     );
 
 
-</script>
+  </script>
 
 
 </body>
